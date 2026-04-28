@@ -139,7 +139,7 @@ script = ExtResource("1_md0e3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=580290281]
 scale = Vector2(3.5, 3.3)
 sprite_frames = SubResource("SpriteFrames_jmwgi")
-animation = &"idle"
+animation = &"walk"
 offset = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2107035749]

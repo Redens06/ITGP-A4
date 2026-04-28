@@ -7,12 +7,18 @@ var health = 100
 var player_inattack_zone = false 
 var can_take_dmg = true 
 
+var isSquishy = false
+var squishTimer = 0.0
+
+func _ready() -> void:
+	$AnimatedSprite2D.play("walk") 
+	if randi() == 1:
+		isSquishy = true
+
 func _physics_process(delta):
 	deal_with_damage()
 	if player != null:
 		position += Vector2(player.position - position).normalized() * speed * delta
-		
-		$AnimatedSprite2D.play("walk") 
 		
 		if(player.position.x - position.x) < 0:
 			$AnimatedSprite2D.flip_h = true 
@@ -21,6 +27,11 @@ func _physics_process(delta):
 	else:
 		player = get_tree().get_first_node_in_group("player")
 	move_and_slide()
+	
+	if isSquishy:
+		squishTimer += delta
+		$AnimatedSprite2D.scale.x = 3.5 + sin(squishTimer * PI * (5.0/3.0))
+		$AnimatedSprite2D.scale.y = 3.5 - sin(squishTimer * PI * (5.0/3.0))
 
 func enemy():
 	pass
