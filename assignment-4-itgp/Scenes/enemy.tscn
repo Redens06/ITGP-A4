@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dc5kpll00oy1r"]
 
-[ext_resource type="Script" uid="uid://48mj8mty7kqc" path="res://Script/enemy.gd" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://bgtpm8om56pw6" path="res://Script/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://byl7ml0m1dl11" path="res://Sprites/ConceptSlime.png" id="2_4ra3w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
