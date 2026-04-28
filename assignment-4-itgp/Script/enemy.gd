@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 45
+var speed = 70
 var player_chase = false
 var player = null  
 var health = 100
@@ -9,8 +9,8 @@ var can_take_dmg = true
 
 func _physics_process(delta):
 	deal_with_damage()
-	if player_chase:
-		position += (player.position - position)/speed 
+	if player != null:
+		position += Vector2(player.position - position).normalized() * speed * delta
 		
 		$AnimatedSprite2D.play("walk") 
 		
@@ -19,17 +19,8 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite2D.flip_h = false 
 	else:
-		$AnimatedSprite2D.play("idle") 
-	move_and_slide()   
-
-func _on_detection_body_entered(body): 
-		player = body
-		player_chase = true
-		print("Enemy spotted player!")
-
-func _on_detection_body_exited(body):
-	player = null
-	player_chase = false 
+		player = get_tree().get_first_node_in_group("player")
+	move_and_slide()
 
 func enemy():
 	pass

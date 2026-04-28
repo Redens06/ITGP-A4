@@ -3,7 +3,25 @@
 [ext_resource type="PackedScene" uid="uid://dc5kpll00oy1r" path="res://Scenes/enemy.tscn" id="1_go701"]
 [ext_resource type="PackedScene" uid="uid://beyeq37qyobrm" path="res://Scenes/player.tscn" id="2_5a7ea"]
 
+[sub_resource type="Gradient" id="Gradient_go701"]
+colors = PackedColorArray(0.23618546, 0.57566816, 1.92523e-07, 1, 0, 0.67705756, 1.92523e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5a7ea"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8j60k"]
+noise = SubResource("FastNoiseLite_5a7ea")
+color_ramp = SubResource("Gradient_go701")
+seamless = true
+
 [node name="World" type="Node2D" unique_id=1324570984]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1707777019]
+repeat_size = Vector2(512, 512)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1684488173]
+position = Vector2(666, 257)
+texture = SubResource("NoiseTexture2D_8j60k")
 
 [node name="enemy" parent="." unique_id=1605646954 instance=ExtResource("1_go701")]
 position = Vector2(437, 266)

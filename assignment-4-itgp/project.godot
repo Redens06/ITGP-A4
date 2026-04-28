@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 global="*uid://cvva4mx7nrm7h"
 
+[global_group]
+
+player="hi im the player"
+
 [input]
 
 ui_left={

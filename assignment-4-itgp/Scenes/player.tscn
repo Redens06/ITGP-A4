@@ -422,7 +422,7 @@ radius = 22.099337
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 63.387695
 
-[node name="Player" type="CharacterBody2D" unique_id=290798814]
+[node name="Player" type="CharacterBody2D" unique_id=290798814 groups=["player"]]
 y_sort_enabled = true
 collision_layer = 3
 script = ExtResource("1_onrkg")
@@ -453,7 +453,7 @@ wait_time = 0.5
 [node name="deal_atk_timer" type="Timer" parent="." unique_id=1247849265]
 
 [node name="healthbar" type="ProgressBar" parent="." unique_id=462438560]
-modulate = Color(0.32111654, 0.73774064, 3.85046e-07, 1)
+modulate = Color(0.74, 0, 0, 1)
 offset_left = -25.0
 offset_top = 13.0
 offset_right = 464.99994
@@ -467,6 +467,9 @@ autostart = true
 
 [node name="auto_atk_timer" type="Timer" parent="." unique_id=548713832]
 autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1000717643]
+position_smoothing_enabled = true
 
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
