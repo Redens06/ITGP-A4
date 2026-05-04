@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://bc8mhpy3ciuc7"]
 
-[ext_resource type="Script" uid="uid://cv4fs632p3bim" path="res://Scenes/world.gd" id="1_5a7ea"]
+[ext_resource type="Script" uid="uid://cv4fs632p3bim" path="res://Script/world.gd" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://dc5kpll00oy1r" path="res://Scenes/enemy.tscn" id="1_go701"]
 [ext_resource type="PackedScene" uid="uid://beyeq37qyobrm" path="res://Scenes/player.tscn" id="2_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://c455g3vbhxmky" path="res://Scenes/SpawnLocation.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://mypdvc8rjlqi" path="res://Scenes/enemy_2.tscn" id="5_o06y3"]
+[ext_resource type="PackedScene" uid="uid://cnaospy0l7b23" path="res://Scenes/enemy_3.tscn" id="6_k7acu"]
+[ext_resource type="PackedScene" uid="uid://dydndfj6n5x2w" path="res://Scenes/enemy_4.tscn" id="7_5v1tr"]
 
 [sub_resource type="Gradient" id="Gradient_go701"]
 colors = PackedColorArray(0.23618546, 0.57566816, 1.92523e-07, 1, 0, 0.67705756, 1.92523e-07, 1)
@@ -52,6 +55,17 @@ position = Vector2(-9, 1332)
 
 [node name="spawnlocation" parent="." unique_id=660564993 groups=["spawn"] instance=ExtResource("4_8j60k")]
 position = Vector2(-20, 584)
+
+[node name="enemy_2" parent="." unique_id=1855091977 instance=ExtResource("5_o06y3")]
+position = Vector2(441, 518)
+
+[node name="enemy_3" parent="." unique_id=1512047955 instance=ExtResource("6_k7acu")]
+position = Vector2(422, 156)
+scale = Vector2(2, 2)
+
+[node name="enemy_4" parent="." unique_id=57771501 instance=ExtResource("7_5v1tr")]
+position = Vector2(437, 397)
+scale = Vector2(1.5, 1.5)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="tree_exiting" from="spawnlocation" to="." method="_on_spawnlocation_tree_exiting"]
