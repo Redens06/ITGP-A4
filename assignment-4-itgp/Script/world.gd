@@ -21,5 +21,5 @@ func _on_spawn_timer_timeout():
 	
 	var scene = enemy_list.pick_random().instantiate()
 	var pickedSpawn = spawnPoints.pick_random()
-	scene.position = pickedSpawn.position 
+	scene.position = pickedSpawn.global_position 
 	add_child(scene)
