@@ -47,11 +47,13 @@ func _on_enemy_hitbox_body_exited(body):
 func deal_with_damage():
 	if player_inattack_zone and global.player_current_attack == true: 
 		if can_take_dmg == true:
-			health = health - 15 
+			health = health - 15
 			$take_dmg_cooldown.start() 
 			can_take_dmg = false 
 			print("slime health = ", health)
 			if health <= 0:
+				var player = get_tree().get_first_node_in_group("player")
+				player.gainEXP(1)
 				self.queue_free() 
 
 func _on_take_dmg_cooldown_timeout():
