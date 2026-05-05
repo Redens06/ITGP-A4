@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://c6c2itcsc448t"]
+
+[ext_resource type="Script" uid="uid://1l2f6dqubvvq" path="res://title_screen.gd" id="1_3b4xv"]
+[ext_resource type="Texture2D" uid="uid://ch2xpds50mcky" path="res://Sprites/goblinfallSurvivalLogoPIXEL.png" id="1_tic01"]
+[ext_resource type="Texture2D" uid="uid://b5e2f41v4vfbj" path="res://Sprites/grassNoise.tres" id="2_3b4xv"]
+
+[node name="TitleScreen" type="Node2D" unique_id=376593385]
+script = ExtResource("1_3b4xv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1771197551]
+anchor_mode = 0
+
+[node name="TitleSprite" type="TextureRect" parent="." unique_id=753708184]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -329.0
+offset_top = -34.0
+offset_right = 1504.0
+offset_bottom = 466.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(916.5, 250)
+texture = ExtResource("1_tic01")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1498512061]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="TitleSpriteShadow" type="TextureRect" parent="Parallax2D" unique_id=1905259231]
+self_modulate = Color(0, 0, 0, 0.49411765)
+z_index = -5
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -332.0
+offset_top = -24.0
+offset_right = 1501.0
+offset_bottom = 476.00012
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(916.5, 250)
+texture = ExtResource("1_tic01")
+
+[node name="Grass" type="TextureRect" parent="Parallax2D" unique_id=1372964173]
+z_index = -200
+offset_left = -296.0
+offset_top = -146.0
+offset_right = 1393.0
+offset_bottom = 803.0
+texture = ExtResource("2_3b4xv")
+stretch_mode = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=4624097]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1175907744]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(300, 100)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="startButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=982098589]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "START"
+
+[node name="quitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1428601113]
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "QUIT"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/startButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]

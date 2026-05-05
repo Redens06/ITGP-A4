@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Assignment4-ITGP"
-run/main_scene="uid://bc8mhpy3ciuc7"
+run/main_scene="uid://c6c2itcsc448t"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
