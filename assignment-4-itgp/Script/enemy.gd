@@ -12,7 +12,7 @@ var squishTimer = 0.0
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("walk") 
-	if randi() == 1:
+	if randf_range(0,1) == 1:
 		isSquishy = true
 
 func _physics_process(delta):
@@ -52,6 +52,8 @@ func deal_with_damage():
 			can_take_dmg = false 
 			print("slime health = ", health)
 			if health <= 0:
+				var player = get_tree().get_first_node_in_group("player")
+				player.gainEXP(1)
 				self.queue_free() 
 
 func _on_take_dmg_cooldown_timeout():

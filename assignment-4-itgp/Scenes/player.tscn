@@ -423,6 +423,32 @@ radius = 22.099337
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 63.387695
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6t5aa"]
+bg_color = Color(0.34, 0.272, 0, 0.38039216)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.17, 0.136, 0, 0.38039216)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgqql"]
+bg_color = Color(0.92, 0.73600006, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.8000001, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 2
+
 [node name="Player" type="CharacterBody2D" unique_id=290798814 groups=["player"]]
 y_sort_enabled = true
 collision_layer = 3
@@ -471,6 +497,19 @@ autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1000717643]
 position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D" unique_id=428397397]
+
+[node name="EXPbar" type="ProgressBar" parent="Camera2D/CanvasLayer" unique_id=1752719127]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_6t5aa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vgqql")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1350834713 groups=["spawn"]]
 position = Vector2(-676, -324)

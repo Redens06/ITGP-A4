@@ -9,23 +9,27 @@ var enemy_attack_cooldown = true
 var health = 175
 var attack_ip = false 
 
+var exp = 0
+var level = 1
+var nextLevel = 5
+
+
 func _ready():
 	start_position = global_position
 	$AnimatedSprite2D.play("front_idle")
+	$Camera2D/CanvasLayer/EXPbar.max_value = nextLevel
 
 func _physics_process(delta):
 	_playermovement(delta)
 	enemy_attack()
 	if enemy_inattack_range and attack_ip == false:
 		attack()
-
+	
 	update_health()
 	if health <= 0:
 		player_alive = false
 		health = 0
-		print("player has been killed")
-		print("press r to respawn")
-		self.queue_free()
+		get_tree().change_scene_to_file("res://titleScreen.tscn")
 
  
 func _playermovement(delta):
@@ -155,3 +159,13 @@ func _on_regen_timeout():
 func _on_auto_atk_timer_timeout():
 	if enemy_inattack_range and attack_ip == false:
 		attack()
+
+
+func gainEXP(value : int):
+	exp += value
+	if exp >= nextLevel:
+		level += 1
+		exp = 0
+		nextLevel = ceil(nextLevel * 1.2)
+	$Camera2D/CanvasLayer/EXPbar.value = exp
+	$Camera2D/CanvasLayer/EXPbar.max_value = nextLevel
