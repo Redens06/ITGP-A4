@@ -30,31 +30,33 @@ func _physics_process(delta):
  
 func _playermovement(delta):
 	velocity = Vector2.ZERO
-	current_dir = "none"
+	var newDir = "none"
 	if Input.is_action_pressed("ui_right"):
-		current_dir = "right"
+		newDir = "right"
 		play_anim(1)
 		velocity.x += speed
 		velocity.y += 0
 	if Input.is_action_pressed("ui_left"):
-		current_dir = "left"
+		newDir = "left"
 		play_anim(1)
 		velocity.x += -speed
 		velocity.y += 0
 	if Input.is_action_pressed("ui_down"):
-		if current_dir == "none":
-			current_dir = "down"
+		if newDir == "none":
+			newDir = "down"
 			play_anim(1)
 		velocity.y += speed
 		velocity.x += 0
 	if Input.is_action_pressed("ui_up"):
-		if current_dir == "none":
-			current_dir = "up"
+		if newDir == "none":
+			newDir = "up"
 			play_anim(1)
 		velocity.y += -speed
 		velocity.x += 0
 	if velocity == Vector2.ZERO:
 		play_anim(0)
+	
+	current_dir = newDir
 
 	move_and_slide()
 

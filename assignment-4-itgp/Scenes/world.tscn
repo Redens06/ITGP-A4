@@ -61,11 +61,9 @@ position = Vector2(441, 518)
 
 [node name="enemy_3" parent="." unique_id=1512047955 instance=ExtResource("6_k7acu")]
 position = Vector2(422, 156)
-scale = Vector2(2, 2)
 
 [node name="enemy_4" parent="." unique_id=57771501 instance=ExtResource("7_5v1tr")]
 position = Vector2(437, 397)
-scale = Vector2(1.5, 1.5)
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="tree_exiting" from="spawnlocation" to="." method="_on_spawnlocation_tree_exiting"]
