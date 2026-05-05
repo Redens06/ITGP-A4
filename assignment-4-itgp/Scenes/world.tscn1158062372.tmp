@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bc8mhpy3ciuc7"]
+
+[ext_resource type="Script" uid="uid://cv4fs632p3bim" path="res://Script/world.gd" id="1_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://beyeq37qyobrm" path="res://Scenes/player.tscn" id="2_5a7ea"]
+[ext_resource type="Texture2D" uid="uid://b5e2f41v4vfbj" path="res://Sprites/grassNoise.tres" id="2_k7acu"]
+
+[node name="World" type="Node2D" unique_id=1324570984]
+script = ExtResource("1_5a7ea")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1707777019]
+scroll_offset = Vector2(-61, -147)
+repeat_size = Vector2(512, 512)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1684488173]
+position = Vector2(666, 257)
+texture = ExtResource("2_k7acu")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=561380824]
+autostart = true
+
+[node name="Player" parent="." unique_id=290798814 instance=ExtResource("2_5a7ea")]
+position = Vector2(580, 325)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

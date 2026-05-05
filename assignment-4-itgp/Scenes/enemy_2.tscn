@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://mypdvc8rjlqi"]
 
-[ext_resource type="Script" uid="uid://dfbql13rbikub" path="res://Script/enemy_2.gd" id="1_527ua"]
+[ext_resource type="Script" uid="uid://bgtpm8om56pw6" path="res://Script/enemy.gd" id="1_527ua"]
 [ext_resource type="Texture2D" uid="uid://cox5cwcimi326" path="res://Sprites/ConceptsSlimeG.png" id="2_527ua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_48bj6"]
@@ -135,6 +135,7 @@ radius = 38.0
 [node name="enemy_2" type="CharacterBody2D" unique_id=1605646954]
 y_sort_enabled = true
 script = ExtResource("1_527ua")
+slime_type = "Green"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=580290281]
 scale = Vector2(3.5, 3.3)

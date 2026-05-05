@@ -135,7 +135,7 @@ radius = 38.0
 [node name="enemy" type="CharacterBody2D" unique_id=1605646954]
 y_sort_enabled = true
 script = ExtResource("1_md0e3")
-slime_type = "Blue"
+slime_type = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=580290281]
 scale = Vector2(3.5, 3.3)

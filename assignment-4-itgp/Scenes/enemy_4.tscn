@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dydndfj6n5x2w"]
 
-[ext_resource type="Script" uid="uid://blxiw8tcyp1jq" path="res://Script/enemy_4.gd" id="1_5xuse"]
+[ext_resource type="Script" uid="uid://bgtpm8om56pw6" path="res://Script/enemy.gd" id="1_5xuse"]
 [ext_resource type="Texture2D" uid="uid://numdfkxy3glo" path="res://Sprites/ConceptsSlimeP.png" id="2_5xuse"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w10yr"]
@@ -136,6 +136,7 @@ radius = 38.0
 y_sort_enabled = true
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_5xuse")
+slime_type = "Purple"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=580290281]
 scale = Vector2(3.5, 3.3)

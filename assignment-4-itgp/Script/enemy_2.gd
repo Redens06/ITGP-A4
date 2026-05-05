@@ -25,7 +25,8 @@ func _physics_process(delta):
 		else:
 			$AnimatedSprite2D.flip_h = false 
 	else:
-		player = get_tree().get_first_node_in_group("player")
+		player = get_tree().get_first_node_in_group("player") 
+		
 	move_and_slide()
 	
 	if isSquishy:

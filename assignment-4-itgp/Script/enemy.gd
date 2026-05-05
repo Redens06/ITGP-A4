@@ -1,19 +1,37 @@
 extends CharacterBody2D
 
-var speed = 75
 var player_chase = false
 var player = null  
-var health = 100
 var player_inattack_zone = false 
 var can_take_dmg = true 
-
 var isSquishy = false
 var squishTimer = 0.0
+var health = 80
+var speed = 60
+
+@export_enum("Green", "Blue", "Purple", "Red")
+var slime_type: String 
+
 
 func _ready() -> void:
+	match slime_type:
+		"Green":
+			health = 80
+			speed = 60
+		"Blue":
+			health = 100
+			speed = 75
+		"Purple":
+			health = 130
+			speed = 85
+		"Red":
+			health = 160
+			speed = 95
+		
 	$AnimatedSprite2D.play("walk") 
 	if randf_range(0,1) == 1:
 		isSquishy = true
+	
 
 func _physics_process(delta):
 	deal_with_damage()
@@ -26,6 +44,7 @@ func _physics_process(delta):
 			$AnimatedSprite2D.flip_h = false 
 	else:
 		player = get_tree().get_first_node_in_group("player")
+		
 	move_and_slide()
 	
 	if isSquishy:
