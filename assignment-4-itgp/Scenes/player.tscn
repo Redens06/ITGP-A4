@@ -473,40 +473,40 @@ autostart = true
 position_smoothing_enabled = true
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1350834713 groups=["spawn"]]
-position = Vector2(-564, -236)
+position = Vector2(-676, -324)
 
 [node name="Marker2D2" type="Marker2D" parent="." unique_id=1882843365 groups=["spawn"]]
-position = Vector2(-582, 256)
+position = Vector2(-676, 324)
 
 [node name="spawnlocation" parent="." unique_id=660564993 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(-576, 31)
+position = Vector2(-676, 0)
 
 [node name="Marker2D5" type="Marker2D" parent="." unique_id=1979004886 groups=["spawn"]]
-position = Vector2(-462, 334)
+position = Vector2(-404, 430)
 
 [node name="Marker2D6" type="Marker2D" parent="." unique_id=340911742 groups=["spawn"]]
-position = Vector2(459, 332)
+position = Vector2(446, 409)
 
 [node name="spawnlocation2" parent="." unique_id=292992647 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(7, 322)
+position = Vector2(5, 463)
 
 [node name="Marker2D7" type="Marker2D" parent="." unique_id=620467899 groups=["spawn"]]
-position = Vector2(578, -182)
+position = Vector2(702, -229)
 
 [node name="Marker2D8" type="Marker2D" parent="." unique_id=109568781 groups=["spawn"]]
-position = Vector2(585, 225)
+position = Vector2(669, 212)
 
 [node name="spawnlocation3" parent="." unique_id=514922868 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(582, 32)
+position = Vector2(691, -4)
 
 [node name="Marker2D11" type="Marker2D" parent="." unique_id=317106070 groups=["spawn"]]
-position = Vector2(-450, -329)
+position = Vector2(-362, -434)
 
 [node name="Marker2D12" type="Marker2D" parent="." unique_id=629673083 groups=["spawn"]]
-position = Vector2(459, -323)
+position = Vector2(344, -430)
 
 [node name="spawnlocation4" parent="." unique_id=1121365597 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(-9, -333)
+position = Vector2(-3, -453)
 
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
