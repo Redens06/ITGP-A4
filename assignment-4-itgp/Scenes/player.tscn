@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dhgewxpew85ol" path="res://Script/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c6b07abt15ygk" path="res://Sprites/ConceptPlayer.png" id="2_i3pqv"]
-[ext_resource type="PackedScene" uid="uid://c455g3vbhxmky" path="res://Scenes/SpawnLocation.tscn" id="3_6t5aa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("2_i3pqv")
@@ -449,6 +448,12 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 2
 
+[sub_resource type="Curve2D" id="Curve2D_6t5aa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -606, -354, 0, 0, 0, 0, 606, -354, 0, 0, 0, 0, 606, 354, 0, 0, 0, 0, -606, 354, 0, 0, 0, 0, -606, -354)
+}
+point_count = 5
+
 [node name="Player" type="CharacterBody2D" unique_id=290798814 groups=["player"]]
 y_sort_enabled = true
 collision_layer = 3
@@ -511,41 +516,11 @@ grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_6t5aa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vgqql")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=1350834713 groups=["spawn"]]
-position = Vector2(-676, -324)
+[node name="enemySpawnPath" type="Path2D" parent="." unique_id=848401367]
+curve = SubResource("Curve2D_6t5aa")
 
-[node name="Marker2D2" type="Marker2D" parent="." unique_id=1882843365 groups=["spawn"]]
-position = Vector2(-676, 324)
-
-[node name="spawnlocation" parent="." unique_id=660564993 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(-676, 0)
-
-[node name="Marker2D5" type="Marker2D" parent="." unique_id=1979004886 groups=["spawn"]]
-position = Vector2(-404, 430)
-
-[node name="Marker2D6" type="Marker2D" parent="." unique_id=340911742 groups=["spawn"]]
-position = Vector2(446, 409)
-
-[node name="spawnlocation2" parent="." unique_id=292992647 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(5, 463)
-
-[node name="Marker2D7" type="Marker2D" parent="." unique_id=620467899 groups=["spawn"]]
-position = Vector2(702, -229)
-
-[node name="Marker2D8" type="Marker2D" parent="." unique_id=109568781 groups=["spawn"]]
-position = Vector2(669, 212)
-
-[node name="spawnlocation3" parent="." unique_id=514922868 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(691, -4)
-
-[node name="Marker2D11" type="Marker2D" parent="." unique_id=317106070 groups=["spawn"]]
-position = Vector2(-362, -434)
-
-[node name="Marker2D12" type="Marker2D" parent="." unique_id=629673083 groups=["spawn"]]
-position = Vector2(344, -430)
-
-[node name="spawnlocation4" parent="." unique_id=1121365597 groups=["spawn"] instance=ExtResource("3_6t5aa")]
-position = Vector2(-3, -453)
+[node name="enemySpawnPoint" type="PathFollow2D" parent="enemySpawnPath" unique_id=1386392690 groups=["spawner"]]
+position = Vector2(-606, -354)
 
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
