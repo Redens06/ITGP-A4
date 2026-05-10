@@ -8,6 +8,8 @@ var isSquishy = false
 var squishTimer = 0.0
 var health = 80
 var speed = 60
+var dmg_taken_multiplier = 1.0 
+
 
 @export_enum("Green", "Blue", "Purple", "Red")
 var slime_type: String 
@@ -18,15 +20,19 @@ func _ready() -> void:
 		"Green":
 			health = 80
 			speed = 60
+			dmg_taken_multiplier = 1.0 
 		"Blue":
 			health = 100
 			speed = 75
+			dmg_taken_multiplier = 0.9
 		"Purple":
 			health = 130
 			speed = 85
+			dmg_taken_multiplier = 0.8
 		"Red":
 			health = 160
 			speed = 95
+			dmg_taken_multiplier = 0.7
 		
 	$AnimatedSprite2D.play("walk") 
 	if randf_range(0,1) == 1:
@@ -66,7 +72,7 @@ func _on_enemy_hitbox_body_exited(body):
 func deal_with_damage():
 	if player_inattack_zone and global.player_current_attack == true: 
 		if can_take_dmg == true:
-			health = health - 15 
+			health = health - 15 * dmg_taken_multiplier
 			$take_dmg_cooldown.start() 
 			can_take_dmg = false 
 			print("slime health = ", health)
