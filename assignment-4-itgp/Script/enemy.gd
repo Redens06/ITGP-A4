@@ -9,6 +9,7 @@ var squishTimer = 0.0
 var health = 80
 var speed = 60
 var dmg_taken_multiplier = 1.0 
+var exp_multipler = 1.0
 
 
 @export_enum("Green", "Blue", "Purple", "Red")
@@ -21,18 +22,22 @@ func _ready() -> void:
 			health = 80
 			speed = 60
 			dmg_taken_multiplier = 1.0 
+			exp_multipler = 1.0
 		"Blue":
 			health = 100
 			speed = 75
 			dmg_taken_multiplier = 0.9
+			exp_multipler = 1.3
 		"Purple":
 			health = 130
 			speed = 85
 			dmg_taken_multiplier = 0.8
+			exp_multipler = 1.6
 		"Red":
 			health = 160
 			speed = 95
 			dmg_taken_multiplier = 0.7
+			exp_multipler = 2.0
 		
 	$AnimatedSprite2D.play("walk") 
 	if randf_range(0,1) == 1:
@@ -78,7 +83,7 @@ func deal_with_damage():
 			print("slime health = ", health)
 			if health <= 0:
 				var player = get_tree().get_first_node_in_group("player")
-				player.gainEXP(1)
+				player.gainEXP(1 * exp_multipler)
 				self.queue_free() 
 
 func _on_take_dmg_cooldown_timeout():
