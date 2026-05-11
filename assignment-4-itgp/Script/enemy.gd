@@ -77,7 +77,7 @@ func _on_enemy_hitbox_body_exited(body):
 func deal_with_damage():
 	if player_inattack_zone and global.player_current_attack == true: 
 		if can_take_dmg == true:
-			health = health - 15 * dmg_taken_multiplier
+			health = health - player.damage * dmg_taken_multiplier
 			$take_dmg_cooldown.start() 
 			can_take_dmg = false 
 			print("slime health = ", health)

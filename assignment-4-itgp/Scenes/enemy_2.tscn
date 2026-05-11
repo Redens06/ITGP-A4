@@ -132,7 +132,7 @@ radius = 16.03122
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 38.0
 
-[node name="enemy_2" type="CharacterBody2D" unique_id=1605646954]
+[node name="enemy_2" type="CharacterBody2D" unique_id=1605646954 groups=["enemy"]]
 y_sort_enabled = true
 script = ExtResource("1_527ua")
 slime_type = "Green"

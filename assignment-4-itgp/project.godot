@@ -23,6 +23,7 @@ global="*uid://cvva4mx7nrm7h"
 
 player="hi im the player"
 spawner=""
+enemy=""
 
 [input]
 

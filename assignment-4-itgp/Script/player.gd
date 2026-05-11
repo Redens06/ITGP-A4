@@ -7,6 +7,8 @@ var player_alive = true
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true 
 var health = 175
+var maxHP = 175
+var damage = 10
 var attack_ip = false 
 
 var exp = 0
@@ -166,6 +168,8 @@ func gainEXP(value : int):
 	if exp >= nextLevel:
 		level += 1
 		exp = 0
+		health += (maxHP - health) / 2
 		nextLevel = ceil(nextLevel * 1.2)
+		
 	$Camera2D/CanvasLayer/EXPbar.value = exp
 	$Camera2D/CanvasLayer/EXPbar.max_value = nextLevel
