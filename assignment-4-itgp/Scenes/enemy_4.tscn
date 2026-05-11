@@ -150,9 +150,9 @@ position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_otto8")
 
 [node name="Enemy_hitbox" type="Area2D" parent="." unique_id=558816844]
+position = Vector2(0, -12.666667)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_hitbox" unique_id=1933155071]
-position = Vector2(8, -12)
 shape = SubResource("CircleShape2D_md0e3")
 debug_color = Color(0.5087409, 0.56572723, 0.35152748, 0.41960785)
 

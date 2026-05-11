@@ -11,6 +11,7 @@ var enemy_list = [
 	preload("res://Scenes/enemy_3.tscn"),
 	preload("res://Scenes/enemy_4.tscn")
 ]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#spawnPoints = get_tree().get_nodes_in_group("spawn")

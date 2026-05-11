@@ -469,7 +469,7 @@ offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2046952133]
 y_sort_enabled = true
-position = Vector2(1, -2.9069977)
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="Player_hitbox" type="Area2D" parent="." unique_id=1070197282]
