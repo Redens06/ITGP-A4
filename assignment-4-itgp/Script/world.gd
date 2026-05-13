@@ -5,17 +5,22 @@ var spawnLine : PathFollow2D
 
 var enemy = preload("res://Scenes/enemy.tscn")
 
+var timer = 0.0
+
 var enemy_list = [
-	preload("res://Scenes/enemy.tscn"),
-	preload("res://Scenes/enemy_2.tscn"),
-	preload("res://Scenes/enemy_3.tscn"),
-	preload("res://Scenes/enemy_4.tscn")
+	preload("res://Scenes/enemy.tscn")
+	#preload("res://Scenes/enemy_2.tscn"),
+	#preload("res://Scenes/enemy_3.tscn"),
+	#preload("res://Scenes/enemy_4.tscn")
 ]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#spawnPoints = get_tree().get_nodes_in_group("spawn")
 	spawnLine = get_tree().get_first_node_in_group("spawner")
+
+func _process(delta: float) -> void:
+	timer += delta
 
 func _on_spawn_timer_timeout():
 	#var enemy_instance = enemy.instantiate()

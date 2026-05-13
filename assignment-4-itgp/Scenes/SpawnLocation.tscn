@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://c455g3vbhxmky"]
-
-[node name="spawnlocation" type="Node2D" unique_id=660564993]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1526428082]
-position = Vector2(258, -168)

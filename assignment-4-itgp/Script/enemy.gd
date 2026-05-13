@@ -11,35 +11,46 @@ var speed = 60
 var dmg_taken_multiplier = 1.0 
 var exp_multipler = 1.0
 
+var setSpriteSheet : AnimatedSprite2D
 
 @export_enum("Green", "Blue", "Purple", "Red")
 var slime_type: String 
 
 
 func _ready() -> void:
+	slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
 	match slime_type:
 		"Green":
 			health = 80
 			speed = 60
 			dmg_taken_multiplier = 1.0 
 			exp_multipler = 1.0
+			scale = Vector2(1,1)
+			setSpriteSheet = $greenSprites
 		"Blue":
 			health = 100
 			speed = 75
 			dmg_taken_multiplier = 0.9
 			exp_multipler = 1.3
+			scale = Vector2(1,1)
+			setSpriteSheet = $blueSprites
 		"Purple":
 			health = 130
 			speed = 85
 			dmg_taken_multiplier = 0.8
 			exp_multipler = 1.6
+			scale = Vector2(2,2)
+			setSpriteSheet = $purpleSprites
 		"Red":
 			health = 160
 			speed = 95
 			dmg_taken_multiplier = 0.7
 			exp_multipler = 2.0
-		
-	$AnimatedSprite2D.play("walk") 
+			scale = Vector2(1.5,1.5)
+			setSpriteSheet = $redSprites
+	
+	setSpriteSheet.show()
+	setSpriteSheet.play("walk")
 	if randf_range(0,1) == 1:
 		isSquishy = true
 	
@@ -50,9 +61,9 @@ func _physics_process(delta):
 		position += Vector2(player.position - position).normalized() * speed * delta
 		
 		if(player.position.x - position.x) < 0:
-			$AnimatedSprite2D.flip_h = true 
+			setSpriteSheet.flip_h = true 
 		else:
-			$AnimatedSprite2D.flip_h = false 
+			setSpriteSheet.flip_h = false 
 	else:
 		player = get_tree().get_first_node_in_group("player")
 		
@@ -60,8 +71,8 @@ func _physics_process(delta):
 	
 	if isSquishy:
 		squishTimer += delta
-		$AnimatedSprite2D.scale.x = 3.5 + sin(squishTimer * PI * (5.0/3.0))
-		$AnimatedSprite2D.scale.y = 3.5 - sin(squishTimer * PI * (5.0/3.0))
+		setSpriteSheet.scale.x = 3.5 + sin(squishTimer * PI * (5.0/3.0))
+		setSpriteSheet.scale.y = 3.5 - sin(squishTimer * PI * (5.0/3.0))
 
 func enemy():
 	pass
