@@ -32,21 +32,21 @@ func _ready() -> void:
 			speed = 75
 			dmg_taken_multiplier = 0.9
 			exp_multipler = 1.3
-			scale = Vector2(1,1)
+			scale = Vector2(1.15,1.15)
 			setSpriteSheet = $blueSprites
 		"Purple":
 			health = 130
 			speed = 85
 			dmg_taken_multiplier = 0.8
 			exp_multipler = 1.6
-			scale = Vector2(2,2)
+			scale = Vector2(1.5,1.5)
 			setSpriteSheet = $purpleSprites
 		"Red":
 			health = 160
 			speed = 95
 			dmg_taken_multiplier = 0.7
 			exp_multipler = 2.0
-			scale = Vector2(1.5,1.5)
+			scale = Vector2(2,2)
 			setSpriteSheet = $redSprites
 	
 	setSpriteSheet.show()
