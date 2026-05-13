@@ -7,7 +7,7 @@ var can_take_dmg = true
 var isSquishy = false
 var squishTimer = 0.0
 var health = 80
-var speed = 60
+var speed = 95
 var dmg_taken_multiplier = 1.0 
 var exp_multipler = 1.0
 
@@ -22,28 +22,28 @@ func _ready() -> void:
 	match slime_type:
 		"Green":
 			health = 80
-			speed = 60
+			speed = 95
 			dmg_taken_multiplier = 1.0 
 			exp_multipler = 1.0
 			scale = Vector2(1,1)
 			setSpriteSheet = $greenSprites
 		"Blue":
 			health = 100
-			speed = 75
+			speed = 85
 			dmg_taken_multiplier = 0.9
 			exp_multipler = 1.3
 			scale = Vector2(1.15,1.15)
 			setSpriteSheet = $blueSprites
 		"Purple":
 			health = 130
-			speed = 85
+			speed = 75
 			dmg_taken_multiplier = 0.8
 			exp_multipler = 1.6
 			scale = Vector2(1.5,1.5)
 			setSpriteSheet = $purpleSprites
 		"Red":
 			health = 160
-			speed = 95
+			speed = 60
 			dmg_taken_multiplier = 0.7
 			exp_multipler = 2.0
 			scale = Vector2(2,2)
