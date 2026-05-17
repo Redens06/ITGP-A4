@@ -16,10 +16,15 @@ repeat_times = 3
 position = Vector2(666, 257)
 texture = ExtResource("2_k7acu")
 
-[node name="SpawnTimer" type="Timer" parent="." unique_id=561380824]
+[node name="GoblinTimer" type="Timer" parent="." unique_id=495166039]
+wait_time = 0.8
+autostart = true
+
+[node name="SlimeTimer" type="Timer" parent="." unique_id=561380824]
 autostart = true
 
 [node name="Player" parent="." unique_id=290798814 instance=ExtResource("2_5a7ea")]
 position = Vector2(580, 325)
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="GoblinTimer" to="." method="_on_goblin_timer_timeout"]
+[connection signal="timeout" from="SlimeTimer" to="." method="_on_spawn_timer_timeout"]

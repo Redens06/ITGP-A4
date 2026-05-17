@@ -1,19 +1,49 @@
 extends CharacterBody2D
 
-var speed = 65
 var player_chase = false
 var player = null  
-var health = 80
 var player_inattack_zone = false 
 var can_take_dmg = true 
+var health = 70
+var speed = 100
+var dmg_taken_multiplier = 1.0 
+var exp_multipler = 1.0
 
-var isSquishy = false
-var squishTimer = 0.0
+var setSpriteSheet : AnimatedSprite2D
+
+@export_enum("Regular", "General", "Brute")
+var goblin_type: String 
+
 
 func _ready() -> void:
-	$AnimatedSprite2D.play("walk") 
-	if randi() == 1:
-		isSquishy = true
+	goblin_type = ["Regular", "Regular", "Regular", "General", "General", "Brute"].pick_random()
+	match goblin_type:
+		"Regular":
+			health = 70
+			speed = 105
+			dmg_taken_multiplier = 1.1
+			exp_multipler = 1.2
+			scale = Vector2(1,1)
+			setSpriteSheet = $RegSprites
+		"General":
+			health = 80
+			speed = 100
+			dmg_taken_multiplier = 0.9
+			exp_multipler = 1.4
+			scale = Vector2(1.15,1.15)
+			setSpriteSheet = $GeneralSprites
+		"Brute":
+			health = 140
+			speed = 60
+			dmg_taken_multiplier = 0.6
+			exp_multipler = 2.0
+			scale = Vector2(1.5,1.5)
+			setSpriteSheet = $BruteSprites
+		
+	
+	setSpriteSheet.show()
+	setSpriteSheet.play("walk")
+		
 
 func _physics_process(delta):
 	deal_with_damage()
@@ -21,19 +51,14 @@ func _physics_process(delta):
 		position += Vector2(player.position - position).normalized() * speed * delta
 		
 		if(player.position.x - position.x) < 0:
-			$AnimatedSprite2D.flip_h = true 
+			setSpriteSheet.flip_h = true 
 		else:
-			$AnimatedSprite2D.flip_h = false 
+			setSpriteSheet.flip_h = false 
 	else:
-		player = get_tree().get_first_node_in_group("player") 
+		player = get_tree().get_first_node_in_group("player")
 		
 	move_and_slide()
 	
-	if isSquishy:
-		squishTimer += delta
-		$AnimatedSprite2D.scale.x = 3.5 + sin(squishTimer * PI * (5.0/3.0))
-		$AnimatedSprite2D.scale.y = 3.5 - sin(squishTimer * PI * (5.0/3.0))
-
 func enemy():
 	pass
 
@@ -48,13 +73,13 @@ func _on_enemy_hitbox_body_exited(body):
 func deal_with_damage():
 	if player_inattack_zone and global.player_current_attack == true: 
 		if can_take_dmg == true:
-			health = health - 15 
+			health = health - player.damage * dmg_taken_multiplier
 			$take_dmg_cooldown.start() 
 			can_take_dmg = false 
-			print("slime health = ", health)
+			print("Goblin health = ", health)
 			if health <= 0:
 				var player = get_tree().get_first_node_in_group("player")
-				player.gainEXP(1)
+				player.gainEXP(1 * exp_multipler)
 				self.queue_free() 
 
 func _on_take_dmg_cooldown_timeout():

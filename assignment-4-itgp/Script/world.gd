@@ -32,3 +32,8 @@ func _on_spawn_timer_timeout():
 	spawnLine.progress_ratio = randf_range(0,1)
 	scene.position = spawnLine.global_position
 	add_child(scene)
+
+func _on_goblin_timer_timeout():
+	pass # Replace with function body.
+	#goblin respawn logic will go here
+	#will add once they have sprites 
