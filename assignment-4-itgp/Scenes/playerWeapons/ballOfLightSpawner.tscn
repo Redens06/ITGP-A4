@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bxyh4t75418rk"]
+
+[ext_resource type="Script" uid="uid://ddegef4amnt4r" path="res://Scenes/playerWeapons/ball_of_light_spawner.gd" id="1_6u5fk"]
+
+[node name="BallOfLightSpawner" type="Node2D" unique_id=726214658]
+script = ExtResource("1_6u5fk")

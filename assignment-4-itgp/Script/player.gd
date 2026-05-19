@@ -16,7 +16,8 @@ var exp = 0
 var level = 1
 var nextLevel = 50
 
-var fireballSpawner = preload("res://Scenes/fireballSpawner.tscn")
+var fireballSpawner = preload("res://Scenes/playerWeapons/fireballSpawner.tscn")
+var lightSpawner = preload("res://Scenes/playerWeapons/ballOfLightSpawner.tscn")
 
 func _ready():
 	start_position = global_position
@@ -96,11 +97,11 @@ func play_anim(movement):
 
 func _on_player_hitbox_body_entered(body):
 	if body.is_in_group("enemy"):
-		print("enemy entered")
+		#print("enemy entered")
 		enemies_in_range.append(body)
 		enemy_inattack_range = true
-	else:
-		print("not an enemy")
+	#else:
+		#print("not an enemy")
 
 func _on_player_hitbox_body_exited(body):
 	if body.is_in_group("enemy"):
@@ -113,14 +114,14 @@ func enemy_attack():
 		health = health - 10
 		enemy_attack_cooldown = false 
 		$atk_cd.start() 
-		print(health)
+		#print(health)
 
 func _on_atk_cd_timeout():
 	if enemy_inattack_range and attack_ip == false:
 		attack()
 
 func attack():
-	print("ATTACK!")
+	#print("ATTACK!")
 	global.player_current_attack = true 
 	attack_ip = true
 	if current_dir == "right":
@@ -139,7 +140,7 @@ func attack():
 		$deal_atk_timer.start()
 	
 	for enemy in enemies_in_range:
-		print("hit an ememy")
+		#print("hit an ememy")
 		enemy.take_damage(1)
 
 func _on_deal_atk_timer_timeout():
@@ -174,7 +175,11 @@ func gainEXP(value : int):
 	if exp >= nextLevel:
 		level += 1
 		damage + 2
-		add_child(fireballSpawner.instantiate())
+		match randi_range(1, 2):
+			1:
+				add_child(fireballSpawner.instantiate())
+			2:
+				add_child(lightSpawner.instantiate())
 		exp = 0
 		health += (maxHP - health) / 2
 		nextLevel = ceil(nextLevel * 1.2)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1hepmtmbex6h"]
 
-[ext_resource type="Script" uid="uid://b5i1hvtdwwxi1" path="res://Script/fireball.gd" id="1_xi7wk"]
+[ext_resource type="Script" uid="uid://b5i1hvtdwwxi1" path="res://Scenes/playerWeapons/fireball.gd" id="1_1485h"]
 
 [sub_resource type="Gradient" id="Gradient_toovh"]
 offsets = PackedFloat32Array(0.3313253, 0.48192772, 0.6506024)
@@ -20,7 +20,7 @@ radius = 29.0
 top_level = true
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_xi7wk")
+script = ExtResource("1_1485h")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1700879411]
 texture = SubResource("GradientTexture2D_xi7wk")

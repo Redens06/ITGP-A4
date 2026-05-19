@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://qir4o6c5bbwi"]
+
+[ext_resource type="Script" uid="uid://dpggv5plhedlm" path="res://Scenes/playerWeapons/fireball_spawner.gd" id="1_25uun"]
+
+[node name="FireballSpawner" type="Node2D" unique_id=423144543]
+script = ExtResource("1_25uun")

@@ -1,6 +1,6 @@
 extends Node2D
 
-var fireballScene = preload("res://Scenes/fireball.tscn")
+var fireballScene = preload("res://Scenes/playerWeapons/fireball.tscn")
 var setCooldown = 1.5
 var cooldownTimer = 0.0
 var closestEnemy = null
