@@ -73,9 +73,6 @@ func _physics_process(delta):
 		setSpriteSheet.scale.x = 3.5 + sin(squishTimer * PI * (5.0/3.0))
 		setSpriteSheet.scale.y = 3.5 - sin(squishTimer * PI * (5.0/3.0))
 
-func enemy():
-	pass
-
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("player"):
 		player_inattack_zone = true 
@@ -88,6 +85,7 @@ func take_damage(mult: float):
 	if can_take_dmg == true:
 		health = health - player.damage * dmg_taken_multiplier * mult
 		$take_dmg_cooldown.start() 
+		modulate = Color(1.0, 0.0, 0.0, 1.0)
 		can_take_dmg = false 
 		print("slime health = ", health)
 		if health <= 0:
@@ -96,3 +94,4 @@ func take_damage(mult: float):
 
 func _on_take_dmg_cooldown_timeout():
 	can_take_dmg = true 
+	modulate = Color(1.0, 1.0, 1.0, 1.0)

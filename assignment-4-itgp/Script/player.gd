@@ -5,6 +5,7 @@ var current_dir = "none"
 var start_position
 var player_alive = true 
 var enemy_inattack_range = false
+var enemies_in_range = []
 var enemy_attack_cooldown = true 
 var health = 175
 var maxHP = 175
@@ -15,6 +16,7 @@ var exp = 0
 var level = 1
 var nextLevel = 50
 
+var fireballSpawner = preload("res://Scenes/fireballSpawner.tscn")
 
 func _ready():
 	start_position = global_position
@@ -23,9 +25,6 @@ func _ready():
 
 func _physics_process(delta):
 	_playermovement(delta)
-	enemy_attack()
-	if enemy_inattack_range and attack_ip == false:
-		attack()
 	
 	update_health()
 	if health <= 0:
@@ -64,30 +63,29 @@ func _playermovement(delta):
 
 
 func play_anim(movement):
-	var dir = current_dir
 	var anim = $AnimatedSprite2D
-	if dir == "right":
+	if current_dir == "right":
 		anim.flip_h = false
 		if movement == 1:
 			anim.play("side_walking")
 		elif movement == 0:
 			if attack_ip == false:
 				anim.play("side_idle")
-	if dir == "left":
+	if current_dir == "left":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("side_walking")
 		elif movement == 0:
 			if attack_ip == false:
 				anim.play("side_idle")
-	if dir == "down":
+	if current_dir == "down":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("front_walking")
 		elif movement == 0:
 			if attack_ip == false:
 				anim.play("front_idle")
-	if dir == "up":
+	if current_dir == "up":
 		anim.flip_h = true
 		if movement == 1:
 			anim.play("back_walking")
@@ -97,12 +95,18 @@ func play_anim(movement):
 
 
 func _on_player_hitbox_body_entered(body):
-	if body.has_method("enemy"):
-		enemy_inattack_range = true 
+	if body.is_in_group("enemy"):
+		print("enemy entered")
+		enemies_in_range.append(body)
+		enemy_inattack_range = true
+	else:
+		print("not an enemy")
 
 func _on_player_hitbox_body_exited(body):
-	if body.has_method("enemy"):
-		enemy_inattack_range = false 
+	if body.is_in_group("enemy"):
+		enemies_in_range.erase(body)
+		if enemies_in_range.size() <= 0:
+			enemy_inattack_range = false
 
 func enemy_attack(): 
 	if enemy_inattack_range and enemy_attack_cooldown == true:
@@ -112,29 +116,31 @@ func enemy_attack():
 		print(health)
 
 func _on_atk_cd_timeout():
-	enemy_attack_cooldown = true
+	if enemy_inattack_range and attack_ip == false:
+		attack()
 
-func player():
-	pass 
-	
 func attack():
-	var dir = current_dir
+	print("ATTACK!")
 	global.player_current_attack = true 
 	attack_ip = true
-	if dir == "right":
+	if current_dir == "right":
 		$AnimatedSprite2D.flip_h = false 
 		$AnimatedSprite2D.play("side_atk")
 		$deal_atk_timer.start()
-	if dir == "left":
+	elif current_dir == "left":
 		$AnimatedSprite2D.flip_h = true
 		$AnimatedSprite2D.play("side_atk")
 		$deal_atk_timer.start()
-	if dir == "down":
-		$AnimatedSprite2D.play("front_atk")	
+	elif current_dir == "up":
+		$AnimatedSprite2D.play("back_atk")
 		$deal_atk_timer.start()
-	if dir == "up":
-		$AnimatedSprite2D.play("back_atk")	
-		$deal_atk_timer.start()	
+	else:
+		$AnimatedSprite2D.play("front_atk")
+		$deal_atk_timer.start()
+	
+	for enemy in enemies_in_range:
+		print("hit an ememy")
+		enemy.take_damage(1)
 
 func _on_deal_atk_timer_timeout():
 	$deal_atk_timer.stop()
@@ -167,9 +173,13 @@ func gainEXP(value : int):
 	exp += value
 	if exp >= nextLevel:
 		level += 1
+		damage + 2
+		add_child(fireballSpawner.instantiate())
 		exp = 0
 		health += (maxHP - health) / 2
 		nextLevel = ceil(nextLevel * 1.2)
-		
+		$Camera2D/CanvasLayer/EXPbar.max_value = nextLevel
+		$Camera2D/CanvasLayer/LevelLabel.text = "Level " + str(level)
+	
+	$Camera2D/CanvasLayer/expLabel.text = str(exp) + "/" + str(nextLevel)
 	$Camera2D/CanvasLayer/EXPbar.value = exp
-	$Camera2D/CanvasLayer/EXPbar.max_value = nextLevel
