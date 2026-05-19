@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dhgewxpew85ol" path="res://Script/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c6b07abt15ygk" path="res://Sprites/ConceptPlayer.png" id="2_i3pqv"]
-[ext_resource type="LabelSettings" uid="uid://dwx2nyby3vc8a" path="res://playerUI.tres" id="3_6t5aa"]
+[ext_resource type="LabelSettings" path="res://playerUI.tres" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://bmrrvjvfcjynu" path="res://Sounds/Sword Slash Sound Effect.mp3" id="4_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("2_i3pqv")
@@ -553,6 +554,9 @@ curve = SubResource("Curve2D_6t5aa")
 
 [node name="enemySpawnPoint" type="PathFollow2D" parent="enemySpawnPath" unique_id=1386392690 groups=["spawner"]]
 position = Vector2(-626, -374)
+
+[node name="Attacksound" type="AudioStreamPlayer2D" parent="." unique_id=2129603417]
+stream = ExtResource("4_vgqql")
 
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
