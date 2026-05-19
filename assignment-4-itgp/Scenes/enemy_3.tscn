@@ -1,26 +1,8 @@
-[gd_scene format=3 uid="uid://byr8c5jy6rpkc"]
+[gd_scene format=3 uid="uid://cby1k2lknc5ed"]
 
-[ext_resource type="Script" uid="uid://dfbql13rbikub" path="res://Script/enemy_2.gd" id="1_527ua"]
+[ext_resource type="Script" uid="uid://bbgpex04tpo8j" path="res://Script/enemy_3.gd" id="1_ipo15"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_1f0kj"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jmwgi"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_afpow"]
 animations = [{
 "frames": [],
 "loop": true,
@@ -46,20 +28,13 @@ radius = 38.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1605646954]
 y_sort_enabled = true
-script = ExtResource("1_527ua")
+script = ExtResource("1_ipo15")
 
-[node name="RegSprites" type="AnimatedSprite2D" parent="." unique_id=1188021856]
+[node name="BruteSprites" type="AnimatedSprite2D" parent="." unique_id=1480128349]
 visible = false
 scale = Vector2(3.5, 3.3)
-sprite_frames = SubResource("SpriteFrames_1f0kj")
+sprite_frames = SubResource("SpriteFrames_afpow")
 animation = &"idle"
-offset = Vector2(0, -6)
-
-[node name="GeneralSprites" type="AnimatedSprite2D" parent="." unique_id=580290281]
-visible = false
-scale = Vector2(3.5, 3.3)
-sprite_frames = SubResource("SpriteFrames_jmwgi")
-animation = &"walk"
 offset = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2107035749]
