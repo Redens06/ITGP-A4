@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cbkmqtl8fpdli"]
+
+[ext_resource type="Texture2D" uid="uid://dede8lya8cjv7" path="res://Sprites/Summoned_Sword.png" id="1_6lw4l"]
+[ext_resource type="Script" uid="uid://cnqslvxclye1" path="res://Scenes/playerWeapons/summoned_sword.gd" id="1_wv82a"]
+
+[node name="Node2D" type="Node2D" unique_id=53925800]
+script = ExtResource("1_wv82a")
+
+[node name="SummonedSword" type="Sprite2D" parent="." unique_id=786367704]
+position = Vector2(29, 3)
+texture = ExtResource("1_6lw4l")
+
+[node name="Sswordhitbox" type="Area2D" parent="." unique_id=652805799]
+position = Vector2(21, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sswordhitbox" unique_id=807233321]
+position = Vector2(-10, 0)
+debug_color = Color(0.41773596, 0.46705228, 0.9890873, 0.41960785)

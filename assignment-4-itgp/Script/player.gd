@@ -18,6 +18,7 @@ var nextLevel = 50
 
 var fireballSpawner = preload("res://Scenes/playerWeapons/fireballSpawner.tscn")
 var lightSpawner = preload("res://Scenes/playerWeapons/ballOfLightSpawner.tscn")
+var summonedsword = preload("res://Scenes/playerWeapons/SummonedSword.tscn")
 
 func _ready():
 	start_position = global_position
