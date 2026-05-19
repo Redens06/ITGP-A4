@@ -47,11 +47,11 @@ func enemy():
 	pass
 
 func _on_enemy_hitbox_body_entered(body):
-	if body.has_method("player"):
+	if body == player:
 		player_inattack_zone = true 
 
 func _on_enemy_hitbox_body_exited(body):
-	if body.has_method("player"):
+	if body == player:
 		player_inattack_zone = false 
 
 func take_damage(mult: float):

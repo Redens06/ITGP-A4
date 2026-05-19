@@ -142,6 +142,8 @@ func attack():
 	for enemy in enemies_in_range:
 		#print("hit an ememy")
 		enemy.take_damage(1)
+		if not $Attacksound.playing:
+			$Attacksound.play()
 
 func _on_deal_atk_timer_timeout():
 	$deal_atk_timer.stop()
