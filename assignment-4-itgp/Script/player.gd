@@ -13,7 +13,7 @@ var attack_ip = false
 
 var exp = 0
 var level = 1
-var nextLevel = 5
+var nextLevel = 50
 
 
 func _ready():
@@ -110,9 +110,9 @@ func enemy_attack():
 		enemy_attack_cooldown = false 
 		$atk_cd.start() 
 		print(health)
-		
+
 func _on_atk_cd_timeout():
-	enemy_attack_cooldown = true 
+	enemy_attack_cooldown = true
 
 func player():
 	pass 

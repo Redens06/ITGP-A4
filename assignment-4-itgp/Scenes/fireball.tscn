@@ -17,6 +17,9 @@ metadata/_snap_count = 2
 radius = 29.0
 
 [node name="Fireball" type="Area2D" unique_id=1840643335]
+top_level = true
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_xi7wk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1700879411]
@@ -25,4 +28,9 @@ texture = SubResource("GradientTexture2D_xi7wk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1523220193]
 shape = SubResource("CircleShape2D_toovh")
 
+[node name="extinguish" type="Timer" parent="." unique_id=2006289188]
+wait_time = 3.0
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="extinguish" to="." method="_on_extinguish_timeout"]
