@@ -11,12 +11,12 @@ var exp_multipler = 1.0
 
 var setSpriteSheet : AnimatedSprite2D
 
-@export_enum("Regular", "General", "Brute")
+@export_enum("Regular", "General",)
 var goblin_type: String 
 
 
 func _ready() -> void:
-	goblin_type = ["Regular", "Regular", "Regular", "General", "General", "Brute"].pick_random()
+	goblin_type = ["Regular", "Regular", "Regular", "General", "General",].pick_random()
 	match goblin_type:
 		"Regular":
 			health = 70
@@ -32,13 +32,6 @@ func _ready() -> void:
 			exp_multipler = 1.4
 			scale = Vector2(1.15,1.15)
 			setSpriteSheet = $GeneralSprites
-		"Brute":
-			health = 140
-			speed = 60
-			dmg_taken_multiplier = 0.6
-			exp_multipler = 2.0
-			scale = Vector2(1.5,1.5)
-			setSpriteSheet = $BruteSprites
 		
 	
 	setSpriteSheet.show()
