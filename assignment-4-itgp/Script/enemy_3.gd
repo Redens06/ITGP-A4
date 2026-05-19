@@ -6,8 +6,8 @@ var player_inattack_zone = false
 var can_take_dmg = true 
 var health = 150
 var speed = 60
-var dmg_taken_multiplier = 2.0 
-var exp_multipler = 1.0
+var dmg_taken_multiplier = 0.6 
+var exp_multipler = 2.0
 
 var setSpriteSheet : AnimatedSprite2D
 
