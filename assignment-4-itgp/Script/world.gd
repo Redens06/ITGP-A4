@@ -28,6 +28,7 @@ func _on_spawn_timer_timeout():
 	#enemy_instance.position = $spawnlocation.position
 	
 	var scene = enemy_list.pick_random().instantiate()
+	scene.spawnTime = timer
 	#var pickedSpawn = spawnPoints.pick_random()
 	spawnLine.progress_ratio = randf_range(0,1)
 	scene.position = spawnLine.global_position

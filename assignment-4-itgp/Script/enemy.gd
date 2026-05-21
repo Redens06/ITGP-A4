@@ -13,12 +13,23 @@ var exp_multipler = 1.0
 
 var setSpriteSheet : AnimatedSprite2D
 
+var spawnTime = 0.0
+
 @export_enum("Green", "Blue", "Purple", "Red")
 var slime_type: String 
 
 
 func _ready() -> void:
-	slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
+	
+	match true:
+		_ when spawnTime < 30:
+			slime_type = ["Green", "Green", "Green", "Blue"].pick_random()
+		_ when spawnTime < 60:
+			slime_type = ["Green", "Blue", "Blue", "Purple"].pick_random()
+		_ when spawnTime >= 60:
+			slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
+	
+	#slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
 	match slime_type:
 		"Green":
 			health = 80
@@ -58,14 +69,13 @@ func _ready() -> void:
 func _physics_process(delta):
 	if player != null:
 		position += Vector2(player.position - position).normalized() * speed * delta
-		
 		if(player.position.x - position.x) < 0:
 			setSpriteSheet.flip_h = true 
 		else:
 			setSpriteSheet.flip_h = false 
 	else:
 		player = get_tree().get_first_node_in_group("player")
-		
+	
 	move_and_slide()
 	
 	if isSquishy:
@@ -83,7 +93,7 @@ func _on_enemy_hitbox_body_exited(body):
 
 func take_damage(mult: float):
 	if can_take_dmg == true:
-		health = health - player.damage * dmg_taken_multiplier * mult
+		health = health - (player.damage * dmg_taken_multiplier * mult)
 		$take_dmg_cooldown.start() 
 		modulate = Color(1.0, 0.0, 0.0, 1.0)
 		can_take_dmg = false 

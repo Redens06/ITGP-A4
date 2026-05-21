@@ -9,7 +9,7 @@ var enemies_in_range = []
 var enemy_attack_cooldown = true 
 var health = 175
 var maxHP = 175
-var damage = 10
+var damage = 25
 var attack_ip = false 
 
 var exp = 0
@@ -185,10 +185,13 @@ func gainEXP(value : int):
 			match options[randi_range(0, options.size() - 1)]:
 				1:
 					add_child(fireballSpawner.instantiate())
+					print("player gained fireball")
 				2:
 					add_child(lightSpawner.instantiate())
+					print("player gained light orb")
 				3:
 					summon_sword()
+					print("player gained sword")
 		exp = 0
 		health += (maxHP - health) / 2
 		nextLevel = ceil(nextLevel * 1.2)

@@ -23,6 +23,8 @@ script = ExtResource("1_bft2t")
 [node name="pivotPoint" type="Node2D" parent="." unique_id=177421361]
 
 [node name="Area2D" type="Area2D" parent="pivotPoint" unique_id=832564817]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pivotPoint/Area2D" unique_id=692690046]
 shape = SubResource("CircleShape2D_j5poj")
