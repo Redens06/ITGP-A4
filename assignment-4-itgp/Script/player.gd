@@ -19,6 +19,7 @@ var nextLevel = 50
 var fireballSpawner = preload("res://Scenes/playerWeapons/fireballSpawner.tscn")
 var lightSpawner = preload("res://Scenes/playerWeapons/ballOfLightSpawner.tscn")
 var summonedsword = preload("res://Scenes/playerWeapons/SummonedSword.tscn")
+var hasSword = false
 
 func _ready():
 	start_position = global_position
@@ -178,11 +179,16 @@ func gainEXP(value : int):
 	if exp >= nextLevel:
 		level += 1
 		damage + 2
-		match randi_range(1, 2):
-			1:
-				add_child(fireballSpawner.instantiate())
-			2:
-				add_child(lightSpawner.instantiate())
+		var options = [1, 2]
+		if not hasSword:
+			options.append(3)
+			match options[randi_range(0, options.size() - 1)]:
+				1:
+					add_child(fireballSpawner.instantiate())
+				2:
+					add_child(lightSpawner.instantiate())
+				3:
+					summon_sword()
 		exp = 0
 		health += (maxHP - health) / 2
 		nextLevel = ceil(nextLevel * 1.2)
@@ -191,3 +197,10 @@ func gainEXP(value : int):
 	
 	$Camera2D/CanvasLayer/expLabel.text = str(exp) + "/" + str(nextLevel)
 	$Camera2D/CanvasLayer/EXPbar.value = exp
+
+func summon_sword():
+	if hasSword:
+		return
+	hasSword = true
+	var sword = summonedsword.instantiate()
+	add_child(sword)

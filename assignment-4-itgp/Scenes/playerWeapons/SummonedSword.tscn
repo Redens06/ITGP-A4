@@ -3,16 +3,30 @@
 [ext_resource type="Texture2D" uid="uid://dede8lya8cjv7" path="res://Sprites/Summoned_Sword.png" id="1_6lw4l"]
 [ext_resource type="Script" uid="uid://cnqslvxclye1" path="res://Scenes/playerWeapons/summoned_sword.gd" id="1_wv82a"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wv82a"]
+
 [node name="Node2D" type="Node2D" unique_id=53925800]
 script = ExtResource("1_wv82a")
 
-[node name="SummonedSword" type="Sprite2D" parent="." unique_id=786367704]
-position = Vector2(29, 3)
+[node name="pivotPoint" type="Node2D" parent="." unique_id=74556984]
+
+[node name="SummonedSword" type="Sprite2D" parent="pivotPoint" unique_id=786367704]
+position = Vector2(27, 3)
 texture = ExtResource("1_6lw4l")
 
-[node name="Sswordhitbox" type="Area2D" parent="." unique_id=652805799]
+[node name="Sswordhitbox" type="Area2D" parent="pivotPoint" unique_id=652805799]
 position = Vector2(21, 0)
+collision_layer = 6
+collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sswordhitbox" unique_id=807233321]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pivotPoint/Sswordhitbox" unique_id=807233321]
 position = Vector2(-10, 0)
+shape = SubResource("CircleShape2D_wv82a")
 debug_color = Color(0.41773596, 0.46705228, 0.9890873, 0.41960785)
+
+[node name="DamageCooldown" type="Timer" parent="." unique_id=1455210052]
+wait_time = 0.5
+
+[connection signal="body_entered" from="pivotPoint/Sswordhitbox" to="." method="_on_sswordhitbox_body_entered"]
+[connection signal="body_exited" from="pivotPoint/Sswordhitbox" to="." method="_on_sswordhitbox_body_exited"]
+[connection signal="timeout" from="DamageCooldown" to="." method="_on_damage_cooldown_timeout"]
