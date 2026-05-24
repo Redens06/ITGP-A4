@@ -559,7 +559,6 @@ horizontal_alignment = 1
 
 [node name="LevelUpUI" type="Control" parent="Camera2D/CanvasLayer" unique_id=1191993919]
 process_mode = 2
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -599,6 +598,10 @@ grow_vertical = 2
 [node name="upgradeOption1" type="Button" parent="Camera2D/CanvasLayer/LevelUpUI/HBoxContainer" unique_id=1889260150]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
 text = "Fireball
 Occasionally fires a fireball at the nearest enemy"
 autowrap_mode = 2
