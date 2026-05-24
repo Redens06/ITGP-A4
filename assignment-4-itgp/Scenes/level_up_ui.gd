@@ -18,8 +18,8 @@ func createOptions():
 	show()
 
 func updateButtons():
-	$HBoxContainer/upgradeOption1.text = "this first one worked, my option is " + upgrade1
-	$HBoxContainer/upgradeOption2.text = "this one too, but mine is " + upgrade2
+	$HBoxContainer/upgradeOption1.text = upgrade1
+	$HBoxContainer/upgradeOption2.text = upgrade2
 
 
 func _on_upgrade_option_1_pressed() -> void:
