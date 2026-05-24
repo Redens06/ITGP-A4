@@ -505,11 +505,13 @@ radius = 38.0
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 5
+motion_mode = 1
 script = ExtResource("1_md0e3")
 slime_type = "Blue"
 
 [node name="greenSprites" type="AnimatedSprite2D" parent="." unique_id=1188021856]
 visible = false
+position = Vector2(0, 10.5999975)
 scale = Vector2(3.5, 3.3)
 sprite_frames = SubResource("SpriteFrames_1f0kj")
 animation = &"walk"
@@ -517,6 +519,7 @@ offset = Vector2(0, -6)
 
 [node name="blueSprites" type="AnimatedSprite2D" parent="." unique_id=580290281]
 visible = false
+position = Vector2(0, 10.5999975)
 scale = Vector2(3.5, 3.3)
 sprite_frames = SubResource("SpriteFrames_jmwgi")
 animation = &"walk"
@@ -524,6 +527,7 @@ offset = Vector2(0, -6)
 
 [node name="purpleSprites" type="AnimatedSprite2D" parent="." unique_id=1480128349]
 visible = false
+position = Vector2(0, 10.5999975)
 scale = Vector2(3.5, 3.3)
 sprite_frames = SubResource("SpriteFrames_afpow")
 animation = &"walk"
@@ -531,21 +535,18 @@ offset = Vector2(0, -6)
 
 [node name="redSprites" type="AnimatedSprite2D" parent="." unique_id=1265815157]
 visible = false
+position = Vector2(0, 10.5999975)
 scale = Vector2(3.5, 3.3)
 sprite_frames = SubResource("SpriteFrames_287tu")
 animation = &"walk"
 offset = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2107035749]
-visible = false
 y_sort_enabled = true
-position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_otto8")
 
 [node name="Enemy_hitbox" type="Area2D" parent="." unique_id=558816844]
-position = Vector2(0, -13)
 collision_layer = 2
-collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_hitbox" unique_id=1933155071]
 shape = SubResource("CircleShape2D_md0e3")

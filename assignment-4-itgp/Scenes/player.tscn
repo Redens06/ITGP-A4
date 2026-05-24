@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dhgewxpew85ol" path="res://Script/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c6b07abt15ygk" path="res://Sprites/ConceptPlayer.png" id="2_i3pqv"]
 [ext_resource type="LabelSettings" uid="uid://dwx2nyby3vc8a" path="res://playerUI.tres" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://wuk0hja28h5p" path="res://Scenes/level_up_ui.gd" id="4_fkybt"]
 [ext_resource type="AudioStream" uid="uid://bmrrvjvfcjynu" path="res://Sounds/Sword Slash Sound Effect.mp3" id="4_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
@@ -450,6 +451,12 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 2
 
+[sub_resource type="LabelSettings" id="LabelSettings_vgqql"]
+font_size = 36
+font_color = Color(0, 1, 0.2901961, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Curve2D" id="Curve2D_6t5aa"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -626, -374, 0, 0, 0, 0, 626, -374, 0, 0, 0, 0, 626, 374, 0, 0, 0, 0, -626, 374, 0, 0, 0, 0, -626, -374)
@@ -459,6 +466,7 @@ point_count = 5
 [node name="Player" type="CharacterBody2D" unique_id=290798814 groups=["player"]]
 y_sort_enabled = true
 collision_mask = 10
+motion_mode = 1
 script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=390558782]
@@ -549,6 +557,63 @@ text = "0/50"
 label_settings = ExtResource("3_6t5aa")
 horizontal_alignment = 1
 
+[node name="LevelUpUI" type="Control" parent="Camera2D/CanvasLayer" unique_id=1191993919]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_fkybt")
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer/LevelUpUI" unique_id=510486177]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.0
+offset_right = 77.0
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "
+Level up! 
+Choose an upgrade:"
+label_settings = SubResource("LabelSettings_vgqql")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/CanvasLayer/LevelUpUI" unique_id=2084011431]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 246.0
+offset_top = -56.0
+offset_right = -246.0
+offset_bottom = 191.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="upgradeOption1" type="Button" parent="Camera2D/CanvasLayer/LevelUpUI/HBoxContainer" unique_id=1889260150]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fireball
+Occasionally fires a fireball at the nearest enemy"
+autowrap_mode = 2
+
+[node name="upgradeOption2" type="Button" parent="Camera2D/CanvasLayer/LevelUpUI/HBoxContainer" unique_id=1238249470]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "Ball of Light
+Occasionally spawns an orbiting ball of light aroundthe player"
+autowrap_mode = 2
+
 [node name="enemySpawnPath" type="Path2D" parent="." unique_id=848401367]
 curve = SubResource("Curve2D_6t5aa")
 
@@ -564,3 +629,5 @@ stream = ExtResource("4_vgqql")
 [connection signal="timeout" from="deal_atk_timer" to="." method="_on_deal_atk_timer_timeout"]
 [connection signal="timeout" from="regen" to="." method="_on_regen_timeout"]
 [connection signal="timeout" from="auto_atk_timer" to="." method="_on_auto_atk_timer_timeout"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/LevelUpUI/HBoxContainer/upgradeOption1" to="Camera2D/CanvasLayer/LevelUpUI" method="_on_upgrade_option_1_pressed"]
+[connection signal="pressed" from="Camera2D/CanvasLayer/LevelUpUI/HBoxContainer/upgradeOption2" to="Camera2D/CanvasLayer/LevelUpUI" method="_on_upgrade_option_2_pressed"]

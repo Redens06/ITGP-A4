@@ -27,7 +27,7 @@ func _ready() -> void:
 		_ when spawnTime < 60:
 			slime_type = ["Green", "Blue", "Blue", "Purple"].pick_random()
 		_ when spawnTime >= 60:
-			slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
+			slime_type = ["Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
 	
 	#slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
 	match slime_type:
@@ -68,7 +68,7 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	if player != null:
-		position += Vector2(player.position - position).normalized() * speed * delta
+		velocity = Vector2(player.position - position).normalized() * speed
 		if(player.position.x - position.x) < 0:
 			setSpriteSheet.flip_h = true 
 		else:

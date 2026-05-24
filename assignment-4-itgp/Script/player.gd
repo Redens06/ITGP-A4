@@ -48,17 +48,17 @@ func _playermovement(delta):
 		play_anim(1)
 		velocity.x += -speed
 		velocity.y += 0
-	if Input.is_action_pressed("ui_down"):
-		if velocity.x == 0:
-			current_dir = "down"
-			play_anim(1)
-		velocity.y += speed
-		velocity.x += 0
 	if Input.is_action_pressed("ui_up"):
 		if velocity.x == 0:
 			current_dir = "up"
 			play_anim(1)
 		velocity.y += -speed
+		velocity.x += 0
+	if Input.is_action_pressed("ui_down"):
+		if velocity.x == 0:
+			current_dir = "down"
+			play_anim(1)
+		velocity.y += speed
 		velocity.x += 0
 	if velocity == Vector2.ZERO:
 		play_anim(0)
@@ -179,19 +179,10 @@ func gainEXP(value : int):
 	if exp >= nextLevel:
 		level += 1
 		damage + 2
-		var options = [1, 2]
-		if not hasSword:
-			options.append(3)
-			match options[randi_range(0, options.size() - 1)]:
-				1:
-					add_child(fireballSpawner.instantiate())
-					print("player gained fireball")
-				2:
-					add_child(lightSpawner.instantiate())
-					print("player gained light orb")
-				3:
-					summon_sword()
-					print("player gained sword")
+		
+		$Camera2D/CanvasLayer/LevelUpUI.createOptions()
+		get_tree().paused = true
+		
 		exp = 0
 		health += (maxHP - health) / 2
 		nextLevel = ceil(nextLevel * 1.2)
@@ -201,9 +192,18 @@ func gainEXP(value : int):
 	$Camera2D/CanvasLayer/expLabel.text = str(exp) + "/" + str(nextLevel)
 	$Camera2D/CanvasLayer/EXPbar.value = exp
 
-func summon_sword():
-	if hasSword:
-		return
-	hasSword = true
-	var sword = summonedsword.instantiate()
-	add_child(sword)
+func gainWeapon(weapon : String):
+	match weapon:
+		"fireball":
+			add_child(fireballSpawner.instantiate())
+			print("player gained fireball")
+		"lightOrb":
+			add_child(lightSpawner.instantiate())
+			print("player gained light orb")
+		"sword":
+			#if hasSword:
+			#	return
+			#hasSword = true
+			var sword = summonedsword.instantiate()
+			add_child(sword)
+			print("player gained sword")
