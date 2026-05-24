@@ -9,6 +9,7 @@ var speed = 60
 var dmg_taken_multiplier = 0.6 
 var exp_multipler = 2.0
 
+
 var setSpriteSheet : AnimatedSprite2D
 
 @export_enum("Brute")
@@ -20,7 +21,7 @@ func _ready() -> void:
 	match goblin_type:
 		"Brute":
 			health = 150
-			speed = 60
+			speed = 55
 			dmg_taken_multiplier = 0.6
 			exp_multipler = 2.0
 			scale = Vector2(1.5,1.5)
@@ -29,18 +30,16 @@ func _ready() -> void:
 	setSpriteSheet.show()
 	setSpriteSheet.play("walk")
 
-
 func _physics_process(delta):
 	if player != null:
-		position += Vector2(player.position - position).normalized() * speed * delta
-		
+		velocity = Vector2(player.position - position).normalized() * speed
 		if(player.position.x - position.x) < 0:
 			setSpriteSheet.flip_h = true 
 		else:
 			setSpriteSheet.flip_h = false 
 	else:
 		player = get_tree().get_first_node_in_group("player")
-		
+	
 	move_and_slide()
 
 func enemy():

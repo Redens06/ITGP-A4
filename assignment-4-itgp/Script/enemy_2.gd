@@ -11,12 +11,22 @@ var exp_multipler = 1.0
 
 var setSpriteSheet : AnimatedSprite2D
 
+var spawnTime = 0.0
+
 @export_enum("Regular", "General",)
 var goblin_type: String 
 
 
 func _ready() -> void:
-	goblin_type = ["Regular", "Regular", "Regular", "General", "General",].pick_random()
+	match true:
+		_ when spawnTime < 30:
+			goblin_type = ["Regular", "Regular", "Regular", "Regular", "General",].pick_random()
+		_ when spawnTime < 60:
+			goblin_type = ["Regular", "Regular", "Regular", "General", "General",].pick_random()
+		_ when spawnTime >= 60:
+			goblin_type = ["Regular", "Regular", "Regular", "General", "General", "General"].pick_random()
+	
+	#goblin_type = ["Regular", "Regular", "Regular", "General", "General",].pick_random()
 	match goblin_type:
 		"Regular":
 			health = 70
@@ -40,15 +50,14 @@ func _ready() -> void:
 
 func _physics_process(delta):
 	if player != null:
-		position += Vector2(player.position - position).normalized() * speed * delta
-		
+		velocity = Vector2(player.position - position).normalized() * speed
 		if(player.position.x - position.x) < 0:
 			setSpriteSheet.flip_h = true 
 		else:
 			setSpriteSheet.flip_h = false 
 	else:
 		player = get_tree().get_first_node_in_group("player")
-		
+	
 	move_and_slide()
 
 func _on_enemy_hitbox_body_entered(body):
