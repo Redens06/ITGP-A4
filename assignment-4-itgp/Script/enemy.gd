@@ -8,7 +8,10 @@ var isSquishy = false
 var squishTimer = 0.0
 var health = 40
 var speed = 95
-var dmg_taken_multiplier = 1.0 
+var dmg_taken_multiplier = 1.0
+var attackCooldown = 1.0 #the cooldown that the below gets reset to
+var attackCountdown = 1.0 #the value that gets ticked down over time, resets to above
+var attackPower = 1.0
 var exp_multipler = 1.0
 
 var setSpriteSheet : AnimatedSprite2D
@@ -34,7 +37,8 @@ func _ready() -> void:
 		"Green":
 			health = 80
 			speed = 95
-			dmg_taken_multiplier = 1.0 
+			dmg_taken_multiplier = 1.0
+			attackPower = 1.0
 			exp_multipler = 1.0
 			scale = Vector2(1,1)
 			setSpriteSheet = $greenSprites
@@ -42,6 +46,7 @@ func _ready() -> void:
 			health = 100
 			speed = 85
 			dmg_taken_multiplier = 0.9
+			attackPower = 1.2
 			exp_multipler = 1.3
 			scale = Vector2(1.15,1.15)
 			setSpriteSheet = $blueSprites
@@ -49,6 +54,7 @@ func _ready() -> void:
 			health = 130
 			speed = 75
 			dmg_taken_multiplier = 0.8
+			attackPower = 1.5
 			exp_multipler = 1.6
 			scale = Vector2(1.5,1.5)
 			setSpriteSheet = $purpleSprites
@@ -56,6 +62,7 @@ func _ready() -> void:
 			health = 160
 			speed = 60
 			dmg_taken_multiplier = 0.7
+			attackPower = 2.0
 			exp_multipler = 2.0
 			scale = Vector2(2,2)
 			setSpriteSheet = $redSprites
@@ -85,11 +92,20 @@ func _physics_process(delta):
 
 func _on_enemy_hitbox_body_entered(body):
 	if body == player:
-		player_inattack_zone = true 
+		player_inattack_zone = true
 
 func _on_enemy_hitbox_body_exited(body):
 	if body == player:
-		player_inattack_zone = false 
+		player_inattack_zone = false
+
+func _process(delta: float) -> void:
+	if player != null and player_inattack_zone == true:
+		if attackCountdown <= 0:
+			player.recieveDamage(attackPower)
+			attackCountdown = attackCooldown
+		else:
+			attackCountdown -= delta
+
 
 func take_damage(mult: float):
 	if can_take_dmg == true:

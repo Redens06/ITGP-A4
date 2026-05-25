@@ -7,7 +7,7 @@ var player_alive = true
 var enemy_inattack_range = false
 var enemies_in_range = []
 var enemy_attack_cooldown = true 
-var health = 175
+var health = 175.0
 var maxHP = 175
 var damage = 25
 var attack_ip = false 
@@ -111,12 +111,11 @@ func _on_player_hitbox_body_exited(body):
 		if enemies_in_range.size() <= 0:
 			enemy_inattack_range = false
 
-func enemy_attack(): 
-	if enemy_inattack_range and enemy_attack_cooldown == true:
-		health = health - 10
-		enemy_attack_cooldown = false 
-		$atk_cd.start() 
-		#print(health)
+func recieveDamage(mult : float): 
+	health -= 10 * mult
+	enemy_attack_cooldown = false
+	update_health()
+	#print(health)
 
 func _on_atk_cd_timeout():
 	if enemy_inattack_range and attack_ip == false:
@@ -153,13 +152,11 @@ func _on_deal_atk_timer_timeout():
 	attack_ip = false 
 
 func update_health():
-	var healthbar = $healthbar
-	healthbar.value = health
-	
+	$healthbar.value = health
 	if health >= 175:
-		healthbar.visible = false
+		$healthbar.visible = false
 	else:
-		healthbar.visible = true
+		$healthbar.visible = true
 
 func _on_regen_timeout():
 	if health < 175:
@@ -174,6 +171,8 @@ func _on_auto_atk_timer_timeout():
 		attack()
 
 
+
+
 func gainEXP(value : int):
 	exp += value
 	if exp >= nextLevel:
@@ -181,6 +180,8 @@ func gainEXP(value : int):
 		damage + 2
 		
 		$Camera2D/CanvasLayer/LevelUpUI.createOptions()
+		if $Camera2D/CanvasLayer/GPUParticles2D.emitting == false:
+			$Camera2D/CanvasLayer/GPUParticles2D.emitting = true
 		get_tree().paused = true
 		
 		exp = 0
@@ -207,3 +208,6 @@ func gainWeapon(weapon : String):
 			var sword = summonedsword.instantiate()
 			add_child(sword)
 			print("player gained sword")
+	
+	if $Camera2D/CanvasLayer/GPUParticles2D.emitting == true:
+		$Camera2D/CanvasLayer/GPUParticles2D.emitting = false
