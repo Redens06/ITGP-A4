@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dhgewxpew85ol" path="res://Script/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c6b07abt15ygk" path="res://Sprites/ConceptPlayer.png" id="2_i3pqv"]
 [ext_resource type="LabelSettings" uid="uid://dwx2nyby3vc8a" path="res://playerUI.tres" id="3_6t5aa"]
-[ext_resource type="Script" uid="uid://wuk0hja28h5p" path="res://Scenes/level_up_ui.gd" id="4_fkybt"]
+[ext_resource type="Script" path="res://Scenes/level_up_ui.gd" id="4_fkybt"]
 [ext_resource type="AudioStream" uid="uid://bmrrvjvfcjynu" path="res://Sounds/Sword Slash Sound Effect.mp3" id="4_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
