@@ -23,4 +23,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		body.take_damage(damage * timeElapsed)
 		#print("ball of light hit enemy")
+		get_parent().playShatter($pivotPoint.global_position, $pivotPoint/Area2D.scale)
+		#print("requested shatter at x=", global_position.x, " y=", global_position.y)
 		queue_free()
