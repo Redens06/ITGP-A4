@@ -17,61 +17,93 @@ var exp_multipler = 1.0
 var setSpriteSheet : AnimatedSprite2D
 
 var spawnTime = 0.0
-
+@export_enum("Slime", "Goblin")
+var enemyType: String
 @export_enum("Green", "Blue", "Purple", "Red")
 var slime_type: String 
+@export_enum("Regular", "General")
+var goblin_type: String 
 
 
 func _ready() -> void:
-	
-	match true:
-		_ when spawnTime < 30:
-			slime_type = ["Green", "Green", "Green", "Blue"].pick_random()
-		_ when spawnTime < 60:
-			slime_type = ["Green", "Blue", "Blue", "Purple"].pick_random()
-		_ when spawnTime >= 60:
-			slime_type = ["Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
-	
-	#slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
-	match slime_type:
-		"Green":
-			health = 80
-			speed = 95
-			dmg_taken_multiplier = 1.0
-			attackPower = 1.0
-			exp_multipler = 1.0
-			scale = Vector2(1,1)
-			setSpriteSheet = $greenSprites
-		"Blue":
-			health = 100
-			speed = 85
-			dmg_taken_multiplier = 0.9
-			attackPower = 1.2
-			exp_multipler = 1.3
-			scale = Vector2(1.15,1.15)
-			setSpriteSheet = $blueSprites
-		"Purple":
-			health = 130
-			speed = 75
-			dmg_taken_multiplier = 0.8
-			attackPower = 1.5
-			exp_multipler = 1.6
-			scale = Vector2(1.5,1.5)
-			setSpriteSheet = $purpleSprites
-		"Red":
-			health = 160
-			speed = 60
-			dmg_taken_multiplier = 0.7
-			attackPower = 2.0
-			exp_multipler = 2.0
-			scale = Vector2(2,2)
-			setSpriteSheet = $redSprites
-	
-	setSpriteSheet.show()
-	setSpriteSheet.play("walk")
-	if randf_range(0,1) == 1:
-		isSquishy = true
-	
+	if enemyType == "Slime":
+		match true:
+			_ when spawnTime < 30:
+				slime_type = ["Green", "Green", "Green", "Blue"].pick_random()
+			_ when spawnTime < 60:
+				slime_type = ["Green", "Blue", "Blue", "Purple"].pick_random()
+			_ when spawnTime >= 60:
+				slime_type = ["Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
+		
+		#slime_type = ["Green", "Green", "Green", "Blue", "Blue", "Purple", "Red"].pick_random()
+		match slime_type:
+			"Green":
+				health = 80
+				speed = 95
+				dmg_taken_multiplier = 1.0
+				attackPower = 1.0
+				exp_multipler = 1.0
+				scale = Vector2(1,1)
+				setSpriteSheet = $greenSprites
+			"Blue":
+				health = 100
+				speed = 85
+				dmg_taken_multiplier = 0.9
+				attackPower = 1.2
+				exp_multipler = 1.3
+				scale = Vector2(1.15,1.15)
+				setSpriteSheet = $blueSprites
+			"Purple":
+				health = 130
+				speed = 75
+				dmg_taken_multiplier = 0.8
+				attackPower = 1.5
+				exp_multipler = 1.6
+				scale = Vector2(1.5,1.5)
+				setSpriteSheet = $purpleSprites
+			"Red":
+				health = 160
+				speed = 60
+				dmg_taken_multiplier = 0.7
+				attackPower = 2.0
+				exp_multipler = 2.0
+				scale = Vector2(2,2)
+				setSpriteSheet = $redSprites
+		
+		setSpriteSheet.show()
+		setSpriteSheet.play("walk")
+		if randf_range(0,1) == 1:
+			isSquishy = true
+	elif enemyType == "Goblin":
+		match true:
+			_ when spawnTime < 30:
+				goblin_type = ["Regular", "Regular", "Regular", "Regular", "General",].pick_random()
+			_ when spawnTime < 60:
+				goblin_type = ["Regular", "Regular", "Regular", "General", "General",].pick_random()
+			_ when spawnTime >= 60:
+				goblin_type = ["Regular", "Regular", "Regular", "General", "General", "General"].pick_random()
+		
+		#goblin_type = ["Regular", "Regular", "Regular", "General", "General",].pick_random()
+		match goblin_type:
+			"Regular":
+				health = 70
+				speed = 105
+				dmg_taken_multiplier = 1.1
+				exp_multipler = 1.2
+				scale = Vector2(1,1)
+				attackPower = 1.0
+				setSpriteSheet = $RegSprites
+			"General":
+				health = 80
+				speed = 100
+				dmg_taken_multiplier = 0.9
+				exp_multipler = 1.4
+				scale = Vector2(1.15,1.15)
+				attackPower = 1.0
+				setSpriteSheet = $GeneralSprites
+		
+		setSpriteSheet.show()
+		setSpriteSheet.play("walk")
 
 func _physics_process(delta):
 	if player != null:
@@ -113,7 +145,7 @@ func take_damage(mult: float):
 		$take_dmg_cooldown.start() 
 		modulate = Color(1.0, 0.0, 0.0, 1.0)
 		can_take_dmg = false 
-		print("slime health = ", health)
+		print(enemyType, " health = ", health)
 		if health <= 0:
 			player.gainEXP(10 * exp_multipler)
 			self.queue_free() 

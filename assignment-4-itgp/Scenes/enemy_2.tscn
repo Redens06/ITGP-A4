@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://byr8c5jy6rpkc"]
 
-[ext_resource type="Script" uid="uid://dfbql13rbikub" path="res://Script/enemy_2.gd" id="1_527ua"]
+[ext_resource type="Script" uid="uid://bgtpm8om56pw6" path="res://Script/enemy.gd" id="1_t3d2o"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1f0kj"]
 animations = [{
@@ -46,7 +46,9 @@ radius = 38.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1605646954]
 y_sort_enabled = true
-script = ExtResource("1_527ua")
+script = ExtResource("1_t3d2o")
+enemyType = "Goblin"
+goblin_type = "Regular"
 
 [node name="RegSprites" type="AnimatedSprite2D" parent="." unique_id=1188021856]
 visible = false

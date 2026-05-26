@@ -1,9 +1,12 @@
 extends Node2D
 
 var fireballScene = preload("res://Scenes/playerWeapons/fireball.tscn")
+var explosion = preload("res://Scenes/particleSpawner.tscn")
 var setCooldown = 1.5
 var cooldownTimer = 0.0
 var closestEnemy = null
+
+
 
 func _process(delta: float) -> void:
 	cooldownTimer += delta
@@ -31,3 +34,9 @@ func spawnFireball():
 	else:
 		fireballInstance.look_at(closestEnemy.global_position)
 	add_child(fireballInstance)
+
+func playExplosion(coords : Vector2):
+	var kaboom = explosion.instantiate()
+	add_child(kaboom)
+	kaboom.global_position = coords
+	kaboom.playParticle("explosion")

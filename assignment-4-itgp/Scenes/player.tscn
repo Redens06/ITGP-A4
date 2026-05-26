@@ -505,6 +505,7 @@ z_index = 5
 y_sort_enabled = true
 collision_mask = 10
 motion_mode = 1
+wall_min_slide_angle = 3.1415927
 script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=390558782]
