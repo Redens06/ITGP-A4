@@ -143,7 +143,7 @@ func take_damage(mult: float):
 	if can_take_dmg == true:
 		var damageDealt = player.damage * dmg_taken_multiplier * mult
 		if enemyType == "Slime":
-			scale = (scale * 3)/4 + (scale - ((health - damageDealt)/health)*scale)/4
+			scale = (scale * 3)/4 + (((health - damageDealt)/health)*scale)/4
 		health = health - damageDealt
 		$take_dmg_cooldown.start() 
 		modulate = Color(1.0, 0.0, 0.0, 1.0)
