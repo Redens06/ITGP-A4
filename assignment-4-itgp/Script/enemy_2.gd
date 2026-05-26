@@ -37,6 +37,7 @@ func _ready() -> void:
 			dmg_taken_multiplier = 1.1
 			exp_multipler = 1.2
 			scale = Vector2(1,1)
+			attackPower = 1.0
 			setSpriteSheet = $RegSprites
 		"General":
 			health = 80
@@ -44,6 +45,7 @@ func _ready() -> void:
 			dmg_taken_multiplier = 0.9
 			exp_multipler = 1.4
 			scale = Vector2(1.15,1.15)
+			attackPower = 1.0
 			setSpriteSheet = $GeneralSprites
 		
 	
