@@ -14,10 +14,10 @@ func _process(delta: float) -> void:
 	rotation_degrees -= orbit_speed * delta
 
 func _on_sswordhitbox_body_entered(body: Node2D) -> void:
-	print("hit: ", body.name)
+	#print("hit: ", body.name)
 	if body.is_in_group("enemy"):
 		bodies_in_range.append(body)
-		print("enemy added: ", body.name)
+		#print("enemy added: ", body.name)
 
 func _on_sswordhitbox_body_exited(body: Node2D) -> void:
 	bodies_in_range.erase(body)

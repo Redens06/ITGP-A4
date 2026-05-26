@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b5i1hvtdwwxi1" path="res://Scenes/playerWeapons/fireball.gd" id="1_1485h"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1485h"]
+radius = 55.00909
+
 [sub_resource type="Gradient" id="Gradient_toovh"]
 offsets = PackedFloat32Array(0.3313253, 0.48192772, 0.6506024)
 colors = PackedColorArray(1, 0.34901962, 0, 1, 1, 0.7058824, 0, 1, 1, 1, 1, 0)
@@ -14,7 +17,7 @@ metadata/_snap_enabled = true
 metadata/_snap_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_toovh"]
-radius = 29.0
+radius = 23.0
 
 [node name="Fireball" type="Area2D" unique_id=1840643335]
 top_level = true
@@ -22,15 +25,25 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_1485h")
 
+[node name="explosionRadius" type="Area2D" parent="." unique_id=1943217642]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="explosionRadius" unique_id=166853103]
+shape = SubResource("CircleShape2D_1485h")
+debug_color = Color(0.9483587, 0.22976437, 0, 0.41960785)
+
+[node name="extinguish" type="Timer" parent="." unique_id=2006289188]
+wait_time = 3.0
+autostart = true
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1700879411]
 texture = SubResource("GradientTexture2D_xi7wk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1523220193]
 shape = SubResource("CircleShape2D_toovh")
 
-[node name="extinguish" type="Timer" parent="." unique_id=2006289188]
-wait_time = 3.0
-autostart = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="explosionRadius" to="." method="_on_explosion_radius_body_entered"]
+[connection signal="body_exited" from="explosionRadius" to="." method="_on_explosion_radius_body_exited"]
 [connection signal="timeout" from="extinguish" to="." method="_on_extinguish_timeout"]

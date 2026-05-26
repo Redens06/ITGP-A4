@@ -33,11 +33,6 @@ position = Vector2(580, 325)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=180853299]
 stream = ExtResource("4_8j60k")
 
-[node name="Collisions" type="StaticBody2D" parent="." unique_id=321425383]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions" unique_id=254845016]
-polygon = PackedVector2Array(6, 3, 1155, 3, 1150, 211, 1285, 208, 1285, 382, 1155, 382, 1155, 658, -5, 658, -7, -50, -119, 131, -139, 453, -124, 769, 331, 839, 861, 812, 1413, 779, 1398, 516, 1388, 89, 1172, -228, 921, -225, 489, -223, 203, -228, -1, -25)
-
 [node name="Dungeontransitionpoint" type="Area2D" parent="." unique_id=986993146]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dungeontransitionpoint" unique_id=545348254]

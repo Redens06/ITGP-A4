@@ -20,6 +20,6 @@ func playShatter(coords : Vector2, orbSize : Vector2):
 	var smash = particleSpawn.instantiate()
 	add_child(smash)
 	smash.global_position = coords
-	print("shatter spawned at x=", coords.x, " y=", coords.y)
+	#print("shatter spawned at x=", coords.x, " y=", coords.y)
 	smash.scale = orbSize
 	smash.playParticle("lightShatter")

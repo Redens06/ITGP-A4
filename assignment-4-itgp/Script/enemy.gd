@@ -45,6 +45,7 @@ func _ready() -> void:
 				exp_multipler = 1.0
 				scale = Vector2(1,1)
 				setSpriteSheet = $greenSprites
+				$hitParticles.modulate = Color(0.498, 0.941, 0.569, 1.0)
 			"Blue":
 				health = 100
 				speed = 85
@@ -53,6 +54,7 @@ func _ready() -> void:
 				exp_multipler = 1.3
 				scale = Vector2(1.15,1.15)
 				setSpriteSheet = $blueSprites
+				$hitParticles.modulate = Color(0.396, 0.694, 0.722)
 			"Purple":
 				health = 130
 				speed = 75
@@ -61,6 +63,7 @@ func _ready() -> void:
 				exp_multipler = 1.6
 				scale = Vector2(1.5,1.5)
 				setSpriteSheet = $purpleSprites
+				$hitParticles.modulate = Color(0.812, 0.361, 0.784, 1.0)
 			"Red":
 				health = 160
 				speed = 60
@@ -69,6 +72,7 @@ func _ready() -> void:
 				exp_multipler = 2.0
 				scale = Vector2(2,2)
 				setSpriteSheet = $redSprites
+				$hitParticles.modulate = Color(0.976, 0.349, 0.361, 1.0)
 		
 		setSpriteSheet.show()
 		setSpriteSheet.play("walk")
@@ -114,6 +118,7 @@ func _physics_process(delta):
 			setSpriteSheet.flip_h = false 
 	else:
 		player = get_tree().get_first_node_in_group("player")
+		#print("finding player")
 	
 	move_and_slide()
 	
@@ -147,6 +152,8 @@ func take_damage(mult: float):
 		health = health - damageDealt
 		$take_dmg_cooldown.start() 
 		modulate = Color(1.0, 0.0, 0.0, 1.0)
+		$hitParticles.amount = ceil(mult * 2)
+		$hitParticles.emitting = true
 		can_take_dmg = false 
 		print(enemyType, " health = ", health)
 		if health <= 0:

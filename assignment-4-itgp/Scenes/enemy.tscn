@@ -501,6 +501,33 @@ radius = 16.03122
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 38.0
 
+[sub_resource type="Gradient" id="Gradient_1f0kj"]
+colors = PackedColorArray(0.69, 0.69, 0.69, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_afpow"]
+gradient = SubResource("Gradient_1f0kj")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Curve" id="Curve_287tu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -7.3445745, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0830c"]
+curve = SubResource("Curve_287tu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ghaa6"]
+particle_flag_disable_z = true
+angle_min = 1.0728835e-05
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+flatness = 0.682
+initial_velocity_min = 294.21
+initial_velocity_max = 294.21
+gravity = Vector3(0, 490, 0)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_0830c")
+
 [node name="enemy" type="CharacterBody2D" unique_id=1605646954 groups=["enemy"]]
 y_sort_enabled = true
 collision_layer = 2
@@ -556,6 +583,15 @@ debug_color = Color(0.5087409, 0.56572723, 0.35152748, 0.41960785)
 
 [node name="take_dmg_cooldown" type="Timer" parent="." unique_id=591730356]
 wait_time = 0.2
+
+[node name="hitParticles" type="GPUParticles2D" parent="." unique_id=1131671520]
+emitting = false
+amount = 6
+texture = SubResource("GradientTexture2D_afpow")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_ghaa6")
 
 [connection signal="body_entered" from="Enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="Enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]

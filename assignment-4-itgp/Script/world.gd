@@ -21,6 +21,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	timer += delta
+	$SlimeTimer.wait_time = 0.1 + pow(1.01, timer * -1)
 
 func _on_spawn_timer_timeout():
 	#var enemy_instance = enemy.instantiate()
@@ -56,5 +57,3 @@ func change_scene():
 		if global.current_scene == "world":
 			get_tree().change_scene_to_file("res://Scenes/dungeon.tscn")
 			global.finsih_changingscenes()
-			
-			
