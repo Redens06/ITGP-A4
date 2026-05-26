@@ -8,7 +8,9 @@ var health = 150
 var speed = 60
 var dmg_taken_multiplier = 0.6 
 var exp_multipler = 2.0
-
+var attackCooldown = 1.0 #the cooldown that the below gets reset to
+var attackCountdown = 1.0 #the value that gets ticked down over time, resets to above
+var attackPower = 1.0
 
 var setSpriteSheet : AnimatedSprite2D
 
@@ -25,6 +27,7 @@ func _ready() -> void:
 			dmg_taken_multiplier = 0.6
 			exp_multipler = 2.0
 			scale = Vector2(1.5,1.5)
+			attackPower = 2.5
 			setSpriteSheet = $BruteSprites
 		
 	setSpriteSheet.show()
@@ -53,12 +56,21 @@ func _on_enemy_hitbox_body_exited(body):
 	if body == player:
 		player_inattack_zone = false 
 
+func _process(delta: float) -> void:
+	if player != null and player_inattack_zone == true:
+		if attackCountdown <= 0:
+			player.recieveDamage(attackPower)
+			attackCountdown = attackCooldown
+		else:
+			attackCountdown -= delta
+
 func take_damage(mult: float):
 	if can_take_dmg == true:
-		health = health - player.damage * dmg_taken_multiplier * mult
+		health = health - (player.damage * dmg_taken_multiplier * mult)
 		$take_dmg_cooldown.start() 
+		modulate = Color(1.0, 0.0, 0.0, 1.0)
 		can_take_dmg = false 
-		print("slime health = ", health)
+		print(goblin_type, " health = ", health)
 		if health <= 0:
 			player.gainEXP(10 * exp_multipler)
 			self.queue_free() 
