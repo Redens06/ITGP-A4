@@ -13,6 +13,8 @@ var attackCooldown = 1.0 #the cooldown that the below gets reset to
 var attackCountdown = 1.0 #the value that gets ticked down over time, resets to above
 var attackPower = 1.0
 var exp_multipler = 1.0
+var mimic_inattack_zone = false
+var mimic_ref = null
 
 var setSpriteSheet : AnimatedSprite2D
 
@@ -130,10 +132,16 @@ func _physics_process(delta):
 func _on_enemy_hitbox_body_entered(body):
 	if body == player:
 		player_inattack_zone = true
+	elif body.is_in_group("mimic"):
+		mimic_inattack_zone = true
+		mimic_ref = body
 
 func _on_enemy_hitbox_body_exited(body):
 	if body == player:
 		player_inattack_zone = false
+	elif body.is_in_group("mimic"):
+		mimic_inattack_zone = false
+		mimic_ref = null
 
 func _process(delta: float) -> void:
 	if player != null and player_inattack_zone == true:
@@ -142,7 +150,13 @@ func _process(delta: float) -> void:
 			attackCountdown = attackCooldown
 		else:
 			attackCountdown -= delta
-
+	
+	if mimic_inattack_zone == true and is_instance_valid(mimic_ref):
+		if attackCountdown <= 0:
+			mimic_ref.take_damage(attackPower)
+			attackCountdown = attackCooldown
+		else:
+			attackCountdown -= delta
 
 func take_damage(mult: float):
 	if can_take_dmg == true:

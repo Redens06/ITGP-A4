@@ -21,8 +21,10 @@ var nextLevel = 50
 var fireballSpawner = preload("res://Scenes/playerWeapons/fireballSpawner.tscn")
 var lightSpawner = preload("res://Scenes/playerWeapons/ballOfLightSpawner.tscn")
 var summonedsword = preload("res://Scenes/playerWeapons/SummonedSword.tscn")
+var mimic = preload("res://Scenes/playerWeapons/mimic.tscn")
 var icicleSpawner = preload("res://Scenes/playerWeapons/iciclesSpawner.tscn")
 var hasSword = false
+var hasMimic = false
 
 func _ready():
 	start_position = global_position
@@ -235,6 +237,14 @@ func gainWeapon(weapon : String):
 		"icicle":
 			add_child(icicleSpawner.instantiate())
 			print("player gained icicles")
+		"mimic":
+			if not hasMimic:
+				hasMimic = true
+				var mimic = mimic.instantiate()
+				mimic.global_position = global_position
+				get_parent().add_child(mimic)
+				mimic.setup(self)
+				print("player gained mimic")
 	
 	if $Camera2D/CanvasLayer/GPUParticles2D.emitting == true:
 		$Camera2D/CanvasLayer/GPUParticles2D.emitting = false
