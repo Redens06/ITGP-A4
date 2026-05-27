@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b5i1hvtdwwxi1" path="res://Scenes/playerWeapons/fireball.gd" id="1_1485h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1485h"]
-radius = 55.00909
+radius = 55.0
 
 [sub_resource type="Gradient" id="Gradient_toovh"]
 offsets = PackedFloat32Array(0.3313253, 0.48192772, 0.6506024)

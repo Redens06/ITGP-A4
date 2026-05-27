@@ -5,7 +5,7 @@ var explosion = preload("res://Scenes/particleSpawner.tscn")
 var setCooldown = 1.5
 var cooldownTimer = 0.0
 var closestEnemy = null
-
+var explosionRadius = 55.0
 
 func _process(delta: float) -> void:
 	cooldownTimer += delta
@@ -32,6 +32,7 @@ func spawnFireball():
 		fireballInstance.rotation_degrees = randf_range(0.0, 360.0)
 	else:
 		fireballInstance.look_at(closestEnemy.global_position)
+	fireballInstance.setBlastRadius(explosionRadius)
 	add_child(fireballInstance)
 
 func playExplosion(coords : Vector2):
@@ -41,4 +42,4 @@ func playExplosion(coords : Vector2):
 	kaboom.playParticle("explosion")
 
 func levelUp():
-	setCooldown = setCooldown * 0.8
+	explosionRadius = explosionRadius * 1.1

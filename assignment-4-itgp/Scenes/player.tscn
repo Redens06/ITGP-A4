@@ -678,6 +678,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="upgradeOption1" type="Button" parent="Camera2D/CanvasLayer/LevelUpUI/HBoxContainer" unique_id=1889260150]
+modulate = Color(0, 0, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -689,6 +690,7 @@ Occasionally fires a fireball at the nearest enemy"
 autowrap_mode = 2
 
 [node name="upgradeOption2" type="Button" parent="Camera2D/CanvasLayer/LevelUpUI/HBoxContainer" unique_id=1238249470]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)

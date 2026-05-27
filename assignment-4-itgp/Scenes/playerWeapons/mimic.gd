@@ -76,7 +76,7 @@ func _on_attack_timer_timeout():
 func _on_take_dmg_timeout() -> void:
 	can_take_dmg = true
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
-	$AnimatedSprite2D.modulate = Color(0.7, 1.0, 0.9, 0.5)
+	$AnimatedSprite2D.modulate = Color(0.671, 0.47, 1.0, 0.502)
 
 func update_health():
 	$healthbar.value = health
@@ -122,7 +122,7 @@ func _on_respawn_timeout() -> void:
 	global_position = player_ref.global_position
 	visible = true
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
-	$AnimatedSprite2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	$AnimatedSprite2D.modulate = Color(0.671, 0.47, 1.0, 0.502)
 	$AnimatedSprite2D.play("side_idle")
 	set_physics_process(true)
 	set_process(true)

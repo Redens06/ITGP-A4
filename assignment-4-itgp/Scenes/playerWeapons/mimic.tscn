@@ -191,7 +191,7 @@ wall_min_slide_angle = 3.1415927
 script = ExtResource("1_x4ih5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=390558782]
-modulate = Color(0.7, 1, 0.9, 0.502)
+modulate = Color(0.6706366, 0.4704743, 1, 0.5019608)
 y_sort_enabled = true
 position = Vector2(1.5, 58.093)
 scale = Vector2(3.5, 3.387)
