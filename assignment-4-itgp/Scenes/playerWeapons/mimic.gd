@@ -20,7 +20,7 @@ func setup(player):
 	damage = player.damage / 2.0
 	speed = player.baseSpeed / 2.0
 	target = get_closest_enemy()
-	$AnimatedSprite2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	#$AnimatedSprite2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
 	$healthbar.max_value = health_max
 	$healthbar.value = health_max
 	$healthbar.visible = false
@@ -76,7 +76,7 @@ func _on_attack_timer_timeout():
 func _on_take_dmg_timeout() -> void:
 	can_take_dmg = true
 	modulate = Color(1.0, 1.0, 1.0, 1.0)
-	$AnimatedSprite2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
+	$AnimatedSprite2D.modulate = Color(0.7, 1.0, 0.9, 0.5)
 
 func update_health():
 	$healthbar.value = health
@@ -139,3 +139,7 @@ func take_damage(mult: float):
 	$take_dmg.start()
 	if health <= 0:
 		die()
+
+func levelUp():
+	health_max = health_max * 1.2
+	speed = speed * 1.2

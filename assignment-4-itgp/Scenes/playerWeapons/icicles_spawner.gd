@@ -29,3 +29,6 @@ func playShatter(coords : Vector2, orbSize : Vector2):
 	#print("shatter spawned at x=", coords.x, " y=", coords.y)
 	smash.scale = orbSize
 	smash.playParticle("lightShatter")
+
+func levelUp():
+	setCooldown = setCooldown * 0.8

@@ -7,7 +7,6 @@ var cooldownTimer = 0.0
 var closestEnemy = null
 
 
-
 func _process(delta: float) -> void:
 	cooldownTimer += delta
 	if cooldownTimer >= setCooldown:
@@ -40,3 +39,6 @@ func playExplosion(coords : Vector2):
 	add_child(kaboom)
 	kaboom.global_position = coords
 	kaboom.playParticle("explosion")
+
+func levelUp():
+	setCooldown = setCooldown * 0.8

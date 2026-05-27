@@ -29,3 +29,6 @@ func _on_damage_cooldown_timeout() -> void:
 		if body.is_in_group("enemy"):
 			#print("dealing damage to: ", body.name)
 			body.take_damage(damage)
+
+func levelUp():
+	orbit_speed = orbit_speed * 1.2

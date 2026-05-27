@@ -19,10 +19,15 @@ var level = 1
 var nextLevel = 50
 
 var fireballSpawner = preload("res://Scenes/playerWeapons/fireballSpawner.tscn")
+var fireballInstance = null
 var lightSpawner = preload("res://Scenes/playerWeapons/ballOfLightSpawner.tscn")
+var lightInstance = null
 var summonedsword = preload("res://Scenes/playerWeapons/SummonedSword.tscn")
+var swordInstance = null
 var mimic = preload("res://Scenes/playerWeapons/mimic.tscn")
+var mimicInstance = null
 var icicleSpawner = preload("res://Scenes/playerWeapons/iciclesSpawner.tscn")
+var icicleInstance = null
 var hasSword = false
 var hasMimic = false
 
@@ -196,8 +201,7 @@ func _on_auto_atk_timer_timeout():
 	if enemy_inattack_range and attack_ip == false:
 		attack()
 
-
-
+# ============== LEVEL UP LOGIC ==============
 
 func gainEXP(value : int):
 	exp += value
@@ -222,29 +226,48 @@ func gainEXP(value : int):
 func gainWeapon(weapon : String):
 	match weapon:
 		"fireball":
-			add_child(fireballSpawner.instantiate())
-			print("player gained fireball")
+			if fireballInstance == null:
+				fireballInstance = fireballSpawner.instantiate()
+				add_child(fireballInstance)
+				print("player gained fireball")
+			else:
+				fireballInstance.levelUp()
+				print("player upgraded fireball")
 		"lightOrb":
-			add_child(lightSpawner.instantiate())
-			print("player gained light orb")
+			if lightInstance == null:
+				lightInstance = lightSpawner.instantiate()
+				add_child(lightInstance)
+				print("player gained light orb")
+			else: 
+				lightInstance.levelUp()
+				print("player upgraded light")
 		"sword":
-			#if hasSword:
-			#	return
-			#hasSword = true
-			var sword = summonedsword.instantiate()
-			add_child(sword)
-			print("player gained sword")
+			if swordInstance == null:
+				swordInstance = summonedsword.instantiate()
+				add_child(swordInstance)
+				print("player gained sword")
+			else:
+				pass
+				#swordInstance.levelUp()
+				print("player upgraded sword")
 		"icicle":
-			add_child(icicleSpawner.instantiate())
-			print("player gained icicles")
+			if icicleInstance == null:
+				icicleInstance = icicleSpawner.instantiate()
+				add_child(icicleInstance)
+				print("player gained icicles")
+			else:
+				icicleInstance.levelUp()
+				print("player upgraded ice")
 		"mimic":
-			if not hasMimic:
-				hasMimic = true
-				var mimic = mimic.instantiate()
-				mimic.global_position = global_position
-				get_parent().add_child(mimic)
-				mimic.setup(self)
+			if mimicInstance == null:
+				mimicInstance = mimic.instantiate()
+				mimicInstance.global_position = global_position
+				get_parent().add_child(mimicInstance)
+				mimicInstance.setup(self)
 				print("player gained mimic")
+			else:
+				mimicInstance.levelUp()
+				print("player upgraded mimic")
 	
 	if $Camera2D/CanvasLayer/GPUParticles2D.emitting == true:
 		$Camera2D/CanvasLayer/GPUParticles2D.emitting = false

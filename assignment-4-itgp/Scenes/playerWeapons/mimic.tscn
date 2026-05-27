@@ -191,6 +191,7 @@ wall_min_slide_angle = 3.1415927
 script = ExtResource("1_x4ih5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=390558782]
+modulate = Color(0.7, 1, 0.9, 0.502)
 y_sort_enabled = true
 position = Vector2(1.5, 58.093)
 scale = Vector2(3.5, 3.387)
@@ -237,7 +238,7 @@ one_shot = true
 
 [connection signal="body_entered" from="Player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="Player_hitbox" to="." method="_on_player_hitbox_body_exited"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_atk_cd_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="take_dmg" to="." method="_on_take_dmg_timeout"]
 [connection signal="timeout" from="respawntimer" to="." method="_on_respawn_timeout"]
