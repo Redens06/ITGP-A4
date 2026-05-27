@@ -21,6 +21,7 @@ var nextLevel = 50
 var fireballSpawner = preload("res://Scenes/playerWeapons/fireballSpawner.tscn")
 var lightSpawner = preload("res://Scenes/playerWeapons/ballOfLightSpawner.tscn")
 var summonedsword = preload("res://Scenes/playerWeapons/SummonedSword.tscn")
+var icicleSpawner = preload("res://Scenes/playerWeapons/iciclesSpawner.tscn")
 var hasSword = false
 
 func _ready():
@@ -231,6 +232,9 @@ func gainWeapon(weapon : String):
 			var sword = summonedsword.instantiate()
 			add_child(sword)
 			print("player gained sword")
+		"icicle":
+			add_child(icicleSpawner.instantiate())
+			print("player gained icicles")
 	
 	if $Camera2D/CanvasLayer/GPUParticles2D.emitting == true:
 		$Camera2D/CanvasLayer/GPUParticles2D.emitting = false

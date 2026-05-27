@@ -1,6 +1,6 @@
 extends Control
 
-var weaponsList = ["fireball", "lightOrb", "sword"]
+var weaponsList = ["fireball", "lightOrb", "sword", "icicle"]
 var upgrade1 = ""
 var upgrade2 = ""
 var player = null

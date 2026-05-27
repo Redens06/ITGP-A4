@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ccqk6bqtapcwg"]
+
+[ext_resource type="Script" uid="uid://dt8igmgakurf7" path="res://Scenes/playerWeapons/icicles_spawner.gd" id="1_2om7b"]
+
+[node name="IciclesSpawner" type="Node2D" unique_id=1657106887]
+script = ExtResource("1_2om7b")

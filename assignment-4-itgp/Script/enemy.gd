@@ -155,7 +155,7 @@ func take_damage(mult: float):
 		$hitParticles.amount = ceil(mult * 2)
 		$hitParticles.emitting = true
 		can_take_dmg = false 
-		print(enemyType, " health = ", health)
+		#print(enemyType, " health = ", health)
 		if health <= 0:
 			player.gainEXP(10 * exp_multipler)
 			self.queue_free() 
