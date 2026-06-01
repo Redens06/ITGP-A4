@@ -148,15 +148,25 @@ func _process(delta: float) -> void:
 		if attackCountdown <= 0:
 			player.recieveDamage(attackPower)
 			attackCountdown = attackCooldown
+			if enemyType == "Goblin":
+				setSpriteSheet.play("atk")
 		else:
 			attackCountdown -= delta
+			if enemyType == "Goblin":
+				if not setSpriteSheet.animation == "atk":
+					setSpriteSheet.play("walk")
 	
 	if mimic_inattack_zone == true and is_instance_valid(mimic_ref):
 		if attackCountdown <= 0:
 			mimic_ref.take_damage(attackPower)
 			attackCountdown = attackCooldown
+			if enemyType == "Goblin":
+				setSpriteSheet.play("atk")
 		else:
 			attackCountdown -= delta
+			if enemyType == "Goblin":
+				if not setSpriteSheet.animation == "atk":
+					setSpriteSheet.play("walk")
 
 func take_damage(mult: float):
 	if can_take_dmg == true:

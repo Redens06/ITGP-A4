@@ -247,8 +247,8 @@ func gainWeapon(weapon : String):
 				add_child(swordInstance)
 				print("player gained sword")
 			else:
-				pass
-				#swordInstance.levelUp()
+				#pass
+				swordInstance.levelUp()
 				print("player upgraded sword")
 		"icicle":
 			if icicleInstance == null:
