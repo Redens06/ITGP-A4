@@ -20,7 +20,7 @@ metadata/_snap_enabled = true
 radius = 33.01515
 
 [node name="CapturePoint" type="Node2D" unique_id=1425697430]
-scale = Vector2(4, 4)
+scale = Vector2(6, 6)
 script = ExtResource("1_onmyo")
 
 [node name="bsaeSprite" type="Sprite2D" parent="." unique_id=445483283]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://df43v8n8brw72"]
+
+[ext_resource type="Script" uid="uid://cuprp4d3411y4" path="res://Scenes/point_pointer.gd" id="1_m47kf"]
+
+[sub_resource type="Gradient" id="Gradient_art4g"]
+offsets = PackedFloat32Array(0, 0.047169812, 0.06603774)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 1, 0.59000003, 0.59000003, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m47kf"]
+gradient = SubResource("Gradient_art4g")
+fill_from = Vector2(0.6, 0.4)
+metadata/_snap_enabled = true
+
+[node name="PointPointer" type="Node2D" unique_id=822233877]
+z_index = 19
+scale = Vector2(1, 0.32)
+script = ExtResource("1_m47kf")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1815531466]
+position = Vector2(93.99999, 0)
+rotation = 0.7853982
+texture = SubResource("GradientTexture2D_m47kf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D" unique_id=2082510830]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+scale = Vector2(1.1, 1.1)
+texture = SubResource("GradientTexture2D_m47kf")

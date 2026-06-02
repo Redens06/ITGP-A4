@@ -1,8 +1,9 @@
 extends Node2D
 
-@export var pointType : String
+signal pointCaptured
+
 var captureProgress = 0.0
-var captureGoal = 15.0
+var captureGoal = 12.0
 var isCapturing = false
 var isCaptured = false
 
@@ -16,6 +17,7 @@ func _process(delta: float) -> void:
 		captureProgress += delta
 		if captureProgress >= captureGoal:
 			isCaptured = true
+			pointCaptured.emit()
 	elif captureProgress > 0 and isCaptured == false:
 		captureProgress -= delta / 3
 	

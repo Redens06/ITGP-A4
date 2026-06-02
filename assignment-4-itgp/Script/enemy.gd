@@ -89,6 +89,8 @@ func _ready() -> void:
 			_ when spawnTime >= 60:
 				goblin_type = ["Regular", "Regular", "Regular", "General", "General", "General"].pick_random()
 		
+		$hitParticles.modulate = Color(0.7, 0.231, 0.235, 1.0)
+		
 		#goblin_type = ["Regular", "Regular", "Regular", "General", "General",].pick_random()
 		match goblin_type:
 			"Regular":
