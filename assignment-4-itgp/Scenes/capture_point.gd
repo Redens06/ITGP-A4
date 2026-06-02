@@ -3,7 +3,7 @@ extends Node2D
 signal pointCaptured
 
 var captureProgress = 0.0
-var captureGoal = 12.0
+var captureGoal = 15.0
 var isCapturing = false
 var isCaptured = false
 
