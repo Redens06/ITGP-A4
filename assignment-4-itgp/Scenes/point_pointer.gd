@@ -4,7 +4,11 @@ extends Node2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	look_at(pointTarget.position)
+	if global_position.distance_to(pointTarget.global_position) <= 200:
+		hide()
+	else:
+		show()
+	look_at(pointTarget.global_position)
 
 func destroy():
 	queue_free()
