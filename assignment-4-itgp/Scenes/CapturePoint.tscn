@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://clrhwf412ulhi"]
+
+[ext_resource type="Script" uid="uid://bh8q8hi7dw4r1" path="res://Scenes/capture_point.gd" id="1_onmyo"]
+[ext_resource type="Texture2D" uid="uid://dtjkh3d3jdkmq" path="res://Sprites/captured.tres" id="2_7wahm"]
+[ext_resource type="Texture2D" uid="uid://14hmaeno68xe" path="res://Sprites/uncaptured.tres" id="2_unrj7"]
+
+[sub_resource type="Gradient" id="Gradient_wvn2p"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.4034091, 0.51704544, 0.8863636, 1)
+colors = PackedColorArray(0.32386363, 0.32386363, 0.32386363, 1, 1, 1, 1, 1, 0.38636363, 0.38636363, 0.38636363, 1, 0.32386363, 0.32386363, 0.32386363, 1, 0.39, 0.39, 0.39, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_onmyo"]
+gradient = SubResource("Gradient_wvn2p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7wahm"]
+radius = 33.01515
+
+[node name="CapturePoint" type="Node2D" unique_id=1425697430]
+scale = Vector2(4, 4)
+script = ExtResource("1_onmyo")
+
+[node name="bsaeSprite" type="Sprite2D" parent="." unique_id=445483283]
+texture = SubResource("GradientTexture2D_onmyo")
+
+[node name="colourStripe" type="Sprite2D" parent="." unique_id=182414362]
+visible = false
+texture = ExtResource("2_7wahm")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=982624657]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1823803933]
+shape = SubResource("CircleShape2D_7wahm")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1025192575]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 30.0
+fill_mode = 4
+texture_under = ExtResource("2_unrj7")
+texture_progress = ExtResource("2_7wahm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
