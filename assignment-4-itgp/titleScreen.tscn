@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://ct7vuxktx7lmt" path="res://Sprites/RoomTiles/Title bg/Goblinfall survival title bg.jpg" id="3_yqvil"]
 [ext_resource type="AudioStream" uid="uid://7ih8c8lqoann" path="res://Sounds/dim existance.mp3" id="4_yqvil"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_yqvil"]
+
 [node name="TitleScreen" type="Node2D" unique_id=376593385]
 script = ExtResource("1_3b4xv")
 
@@ -36,9 +38,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -332.0
-offset_top = -24.0
+offset_top = -41.0
 offset_right = 1501.0
-offset_bottom = 476.00012
+offset_bottom = 459.00012
 grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(916.5, 250)
@@ -62,8 +64,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -300.0
-offset_top = -200.0
+offset_top = -224.0
 offset_right = 300.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(300, 100)
@@ -76,6 +79,8 @@ theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
 text = "DESCEND
 "
+icon = SubResource("ViewportTexture_yqvil")
+flat = true
 
 [node name="quitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1428601113]
 layout_mode = 2
@@ -83,6 +88,7 @@ theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
 text = "CAVE IN
 "
+flat = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2019245366]
 stream = ExtResource("4_yqvil")
