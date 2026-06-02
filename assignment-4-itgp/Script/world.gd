@@ -81,3 +81,5 @@ func _on_capture_point_c_point_captured() -> void:
 func _on_capture_point_d_point_captured() -> void:
 	incrementCaptures()
 	$Player/PointPointerD.destroy()
+	
+	

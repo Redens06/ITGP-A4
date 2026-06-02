@@ -16,3 +16,8 @@ func finish_changescenes():
 			if current_scene == "world":
 				current_scene = "dungeon"
 			else: current_scene = "world"
+	
+func process(delta):
+	if $AudioStreamPlayer2D.playing == false:
+		$AudioStreamPlayer2D.play() 
+	pass

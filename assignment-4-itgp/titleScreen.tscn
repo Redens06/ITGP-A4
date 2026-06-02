@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://1l2f6dqubvvq" path="res://title_screen.gd" id="1_3b4xv"]
 [ext_resource type="Texture2D" uid="uid://ch2xpds50mcky" path="res://Sprites/goblinfallSurvivalLogoPIXEL.png" id="1_tic01"]
-[ext_resource type="Texture2D" uid="uid://b5e2f41v4vfbj" path="res://Sprites/grassNoise.tres" id="2_3b4xv"]
+[ext_resource type="Texture2D" uid="uid://ct7vuxktx7lmt" path="res://Sprites/RoomTiles/Title bg/Goblinfall survival title bg.jpg" id="3_yqvil"]
+[ext_resource type="AudioStream" uid="uid://7ih8c8lqoann" path="res://Sounds/dim existance.mp3" id="4_yqvil"]
 
 [node name="TitleScreen" type="Node2D" unique_id=376593385]
 script = ExtResource("1_3b4xv")
@@ -45,11 +46,11 @@ texture = ExtResource("1_tic01")
 
 [node name="Grass" type="TextureRect" parent="Parallax2D" unique_id=1372964173]
 z_index = -200
-offset_left = -296.0
-offset_top = -146.0
-offset_right = 1393.0
-offset_bottom = 803.0
-texture = ExtResource("2_3b4xv")
+offset_left = -672.0
+offset_top = -660.0
+offset_right = 1248.0
+offset_bottom = 722.0
+texture = ExtResource("3_yqvil")
 stretch_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=4624097]
@@ -73,13 +74,19 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
-text = "START"
+text = "DESCEND
+"
 
 [node name="quitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1428601113]
 layout_mode = 2
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
-text = "QUIT"
+text = "CAVE IN
+"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2019245366]
+stream = ExtResource("4_yqvil")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/startButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/quitButton" to="." method="_on_quit_button_pressed"]
